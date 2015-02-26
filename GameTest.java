@@ -23,8 +23,9 @@ public class GameTest {
 	}
 
 	@Test
-	public void ures(){
-		
+	public void stepTest(){
+		game.step();
+		assertEquals(robots, game.robots);
 	}
 
 }

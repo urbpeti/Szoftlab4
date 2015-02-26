@@ -1,10 +1,11 @@
-
 public class Robot {
+	private double acceleration;
 	private double velocity;
 	private double position;
 	private double distance;
 
 	public Robot() {
+		acceleration = 0;
 		velocity = 0;
 		distance = 0;
 		position = 0;
@@ -15,28 +16,32 @@ public class Robot {
 	}
 
 	public void accelerate() {
-		velocity += GameSetUp.UNIT;
+		if (acceleration < GameSetUp.UNIT)
+			acceleration += GameSetUp.UNIT;
 	}
 
 	public void decelerate() {
-		velocity -= GameSetUp.UNIT;
+		if (acceleration > -GameSetUp.UNIT)
+			acceleration -= GameSetUp.UNIT;
 	}
 
-	public double getposition() {
+	public double getPosition() {
 		return position;
 	}
 
 	public void jump() {
+		velocity += acceleration;
 		position += velocity;
 		position = position % 360;
 		distance += Math.abs(velocity);
+		acceleration = 0;
 	}
 
 	public double getDistance() {
 		return distance;
 	}
 
-	public void halfspeed() {
+	public void halfSpeed() {
 		velocity = velocity / 2;
 	}
 
