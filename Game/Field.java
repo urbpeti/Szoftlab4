@@ -51,14 +51,14 @@ public class Field {
 	public void placeHoles() {
 		System.out.println("[:Field].placeHoles()");
 	}
-	
+
 	public void clearUsedItems() {
 		System.out.println("[:Field].clearUsedItems()");
 		usedItems.removeAll(usedItems);
 	}
-	
-	public Robot winner(){
+
+	public Robot winner() {
 		System.out.println("[:Field].winner()");
-		return new Robot("asdf",Color.black);
+		return new Robot("asdf", Color.black);
 	}
 }

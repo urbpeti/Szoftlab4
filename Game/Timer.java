@@ -1,6 +1,6 @@
 package Game;
 
-public class Timer extended Observable{
+public class Timer extends Observable {
 	private int length;
 
 	private void tick() {
@@ -15,9 +15,8 @@ public class Timer extended Observable{
 	private void start() {
 		System.out.println("[:Timer].start()");
 	}
-	
+
 	private void end() {
 		System.out.println("[:Timer].end()");
 	}
-
 }

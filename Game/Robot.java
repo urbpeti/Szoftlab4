@@ -14,8 +14,8 @@ public class Robot {
 
 	private boolean isDead;
 	private boolean onOil;
-	
-	public Robot(String name,Color color){
+
+	public Robot(String name, Color color) {
 		System.out.println("[:Robot].Robot()");
 		this.name = name;
 		this.color = color;
@@ -71,5 +71,4 @@ public class Robot {
 		System.out.println("[:Robot].setOnOil()");
 		this.onOil = onOil;
 	}
-
 }
