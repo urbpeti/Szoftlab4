@@ -1,23 +1,46 @@
 package Game;
 
-public class Timer extended Observable{
+import Setup.Log;
+import Setup.UseCases;
+
+public class Timer extends Observable{
 	private int length;
+	
+	public Timer () {
+	  Log.enter();
+	  
+	  Log.write("[Create] Timer");
+	  
+	  Log.exit();
+	}
 
 	private void tick() {
-		System.out.println("[:Timer].tick()");
+	  Log.write("[:Timer].tick()");
 	}
 
-	private boolean ended() {
-		System.out.println("[:Timer].ended()");
-		return false;
+	public boolean ended() {
+	  Log.enter();
+	  
+		Log.write("[:Timer].ended()");
+		
+		Log.exit();
+		return !UseCases.isAllDead;
 	}
 
-	private void start() {
-		System.out.println("[:Timer].start()");
+	public void start() {
+	  Log.enter();
+	  
+		Log.write("[:Timer].start()");
+		
+		Log.exit();
 	}
 	
-	private void end() {
-		System.out.println("[:Timer].end()");
+	public void end() {
+	  Log.enter();
+	  
+		Log.write("[:Timer].end()");
+		
+		Log.exit();
 	}
 
 }

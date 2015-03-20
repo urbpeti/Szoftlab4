@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.Color;
+import Setup.Log;
 
 public class Robot {
 	private String name;
@@ -15,61 +16,78 @@ public class Robot {
 	private boolean isDead;
 	private boolean onOil;
 	
-	public Robot(String name,Color color){
-		System.out.println("[:Robot].Robot()");
+	public Robot (String name, Color color) {
+	  Log.enter();
+	  
+		Log.write("[Create] Robot");
+		
 		this.name = name;
 		this.color = color;
+		
+		Log.exit();
 	}
 
-	public void jump() {
-		System.out.println("[:Robot].jump()");
+	public void jump () {
+		Log.write("[:Robot].jump()");
 	}
 
-	public void accelerate() {
-		System.out.println("[:Robot].accelerate()");
+	public void accelerate () {
+		Log.write("[:Robot].accelerate()");
 	}
 
-	public void decelerate() {
-		System.out.println("[:Robot].decelerate()");
+	public void decelerate () {
+		Log.write("[:Robot].decelerate()");
 	}
 
-	public Angle getPosition() {
-		System.out.println("[:Robot].getPosition()");
+	public Angle getPosition () {
+		Log.write("[:Robot].getPosition()");
 		return position;
 	}
 
-	public boolean getIsDead() {
-		System.out.println("[:Robot].getIsDead()");
+	public boolean getIsDead () {
+	  Log.enter();
+		
+	  Log.write("[:Robot].getIsDead()");
+	  
+	  Log.exit();
 		return isDead;
 	}
 
-	public void setIsDead(boolean isDead) {
-		System.out.println("[:Robot].setIsDead()");
+	public void setIsDead (boolean isDead) {
+		Log.write("[:Robot].setIsDead()");
 		this.isDead = isDead;
 	}
 
-	public void halfSpeed() {
-		System.out.println("[:Robot].halfSpeed()");
+	public void halfSpeed () {
+		Log.write("[:Robot].halfSpeed()");
 	}
 
-	public Item getItemCache() {
-		System.out.println("[:Robot].getItemCache()");
+	public Item getItemCache () {
+		Log.write("[:Robot].getItemCache()");
 		return itemCache;
 	}
 
-	public void setItemCache(Item itemCache) {
-		System.out.println("[:Robot].setItemCache");
+	public void setItemCache (Item itemCache) {
+		Log.write("[:Robot].setItemCache");
 		this.itemCache = itemCache;
 	}
 
-	public boolean getOnOil() {
-		System.out.println("[:Robot].getOnOil()");
+	public boolean getOnOil () {
+		Log.write("[:Robot].getOnOil()");
 		return onOil;
 	}
 
-	public void setOnOil(boolean onOil) {
-		System.out.println("[:Robot].setOnOil()");
+	public void setOnOil (boolean onOil) {
+		Log.write("[:Robot].setOnOil()");
 		this.onOil = onOil;
 	}
-
+	
+	public int getDistance () {
+	  Log.enter();
+    
+	  Log.write("[:Robot].getDistance()");
+    
+    Log.exit();
+    return 0;
+  }
 }

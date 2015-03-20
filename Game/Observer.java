@@ -1,9 +1,7 @@
 package Game;
 
-public class Observer {
+public interface Observer {
 
-	public void update() {
-		
-	}
+	public void update ();
 
 }

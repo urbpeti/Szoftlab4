@@ -1,19 +1,63 @@
 package Game;
 
-public class Game {
+import Setup.Log;
+import Setup.UseCases;
+
+public class Game implements Observer {
 	private Field field;
 	private Timer timer;
+	
+	public Game () {
+	  Log.enter();
+    
+    Log.write("[Create] Game");
+    
+    Log.exit();
+	}
 
 	public void endGame() {
-		System.out.println("[:Game].endGame()");
+	  Log.enter();
+	  
+	  Log.write("[:Game].endGame()");
+	  
+	  timer.end();
+	  
+	  Robot winner = field.winner();
+	  
+	  Log.exit();
 	}
 
 	public void startGame() {
-		System.out.println("[:Game].startGame()");
+	  Log.enter();
+		
+	  Log.write("[:Game].startGame()");
+	  
+	  field = new Field();
+	  
+	  timer = new Timer();
+	  timer.start();
+		
+	  Log.exit();
 	}
 	
 	public void step() {
-		System.out.println("[:Game].step()");
+	  Log.enter();
+	  
+	  Log.write("[:Game].step()");
+	  
+	  if (UseCases.current.equals("endGame")) {
+	    boolean alldead = field.isAllDead();
+	    boolean ended = timer.ended();
+	    
+	    if (alldead || ended)
+	      endGame();
+	  }
+	  
+	  Log.exit();
 	}
-
+	
+	@Override
+  public void update () {
+	  Log.write("[:Game].update()");
+  }
 }
