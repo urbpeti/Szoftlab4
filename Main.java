@@ -6,5 +6,9 @@ public class Main {
 		UseCases.startGame();
 		
 		UseCases.endGame(true);
+		
+		UseCases.accelerateOrDecelerate(true);
+	  
+	  UseCases.placeItems(true);
 	}
 }

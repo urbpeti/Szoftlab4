@@ -32,11 +32,19 @@ public class Robot {
 	}
 
 	public void accelerate () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].accelerate()");
+		
+		Log.exit();
 	}
 
 	public void decelerate () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].decelerate()");
+		
+		Log.exit();
 	}
 
 	public Angle getPosition () {
@@ -68,8 +76,12 @@ public class Robot {
 	}
 
 	public void setItemCache (Item itemCache) {
+	  Log.enter();
+	  
 		Log.write("[:Robot].setItemCache");
 		this.itemCache = itemCache;
+		
+		Log.exit();
 	}
 
 	public boolean getOnOil () {

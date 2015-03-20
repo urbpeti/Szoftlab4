@@ -1,4 +1,6 @@
 package Setup;
+import java.awt.Color;
+
 import Game.*;
 
 public class UseCases {
@@ -25,5 +27,35 @@ public class UseCases {
     Log.on();
     
     g.step();
+  }
+  
+  public static boolean isAccelerate = false;
+  public static void accelerateOrDecelerate (boolean acc) {
+    current      = "accelerateOrDecelerate";
+    isAccelerate = acc;
+    
+    Log.off();
+    Robot r = new Robot("Foo", Color.black);
+    Log.on();
+    
+    if (isAccelerate)
+      r.accelerate();
+    else
+      r.decelerate();
+  }
+  
+  public static boolean isOil = false;
+  public static void placeItems (boolean oil) {
+    current = "placeItems";
+    isOil   = oil;
+    
+    Log.off();
+    Robot r = new Robot("Foo", Color.black);
+    Log.on();
+    
+    if (isOil)
+      r.setItemCache(new Oil());
+    else
+      r.setItemCache(new Tacky());
   }
 }
