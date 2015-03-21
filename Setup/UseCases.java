@@ -6,6 +6,7 @@ import Game.*;
 public class UseCases {
   public static String current = "None";    // Mark the current usecase (so it's possible to split methods to more usecase) 
   
+  
   public static void startGame () {
     current = "startGame";
     
@@ -13,6 +14,7 @@ public class UseCases {
 
     g.startGame();
   }
+  
   
   public static boolean isAllDead = false;
   public static void endGame (boolean alldead) {
@@ -28,6 +30,7 @@ public class UseCases {
     
     g.step();
   }
+  
   
   public static boolean isAccelerate = false;
   public static void accelerateOrDecelerate (boolean acc) {
@@ -58,4 +61,68 @@ public class UseCases {
     else
       r.setItemCache(new Tacky());
   }
+  
+  
+  public static void placeOil () {
+    current = "placeOil";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.step();
+  }
+  
+  
+  public static void placeTacky () {
+    current = "placeTacky";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.step();
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,9 @@
 package Game;
 
 import java.awt.Color;
+
 import Setup.Log;
+import Setup.UseCases;
 
 public class Robot {
 	private String name;
@@ -71,7 +73,15 @@ public class Robot {
 	}
 
 	public Item getItemCache () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].getItemCache()");
+		
+		Log.off();
+		Item itemCache = (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky")) ? new Oil() : new Tacky();
+		Log.on();
+		
+		Log.exit();
 		return itemCache;
 	}
 

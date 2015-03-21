@@ -50,8 +50,12 @@ public class Field {
 	}
 
 	public void addItem(Item item) {
+	  Log.enter();
+	  
 	  Log.write("[:Field].addItem(item)");
-		items.add(item);
+	  items.add(item);
+	  
+	  Log.exit();
 	}
 
 	public void removeItem(Item item) {
@@ -60,7 +64,14 @@ public class Field {
 	}
 
 	public void placeItems() {
+	  Log.enter();
+	  
 	  Log.write("[:Field].placeItems()");
+	  
+	  for (Robot r: robots)
+	    addItem(r.getItemCache());
+	  
+	  Log.exit();
 	}
 
 	public boolean isAllDead() {

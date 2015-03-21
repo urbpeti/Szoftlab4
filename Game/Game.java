@@ -45,6 +45,10 @@ public class Game implements Observer {
 	  
 	  Log.write("[:Game].step()");
 	  
+	  if (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky")) {
+      field.placeItems();
+    }
+	  
 	  if (UseCases.current.equals("endGame")) {
 	    boolean alldead = field.isAllDead();
 	    boolean ended = timer.ended();
