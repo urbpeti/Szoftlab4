@@ -13,7 +13,12 @@ public class Tacky extends Item {
 
 	@Override
 	public void interact(Robot robot) {
-		System.out.println("interact()");
-		robot.halfSpeed();
+	  Log.enter();
+    
+    Log.write("[:Tacky].interact(robot)");
+    
+    robot.halfSpeed();
+    
+    Log.exit();
 	}
 }

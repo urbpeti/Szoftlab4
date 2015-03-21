@@ -3,7 +3,7 @@ package Game;
 import Setup.Log;
 import Setup.UseCases;
 
-public class Timer extends Observable{
+public class Timer extends Observable {
 	private int length;
 	
 	public Timer () {
@@ -42,5 +42,4 @@ public class Timer extends Observable{
 		
 		Log.exit();
 	}
-
 }

@@ -42,25 +42,67 @@ public class Field {
 	}
 
 	public void step() {
+	  if (UseCases.current.equals("holeInteract") ||
+        UseCases.current.equals("oilInteract")  ||
+        UseCases.current.equals("tackyInteract")) {
+	    applyInteraction(robots.get(0));
+    
+      return;
+    }
+	  
+	  Log.enter();
+	  
 	  Log.write("[:Field].step()");
+	  
+	  for (Robot r: robots) {
+	    r.jump();
+	    
+	    applyInteraction(r);
+	  }
+	  
+	  Log.exit();
 	}
 
 	public void applyInteraction(Robot robot) {
+	  Log.enter();
+	  
 	  Log.write("[:Field].applyInteraction(robot)");
+	  
+	  Log.off();
+	  Item o = new Oil();
+	  Item t = new Tacky();
+	  Item h = new Hole();
+	  Log.on();
+	  
+	  if (UseCases.current.equals("holeInteract"))
+	    h.interact(robot);
+	  else if (UseCases.current.equals("tackyInteract"))
+	    t.interact(robot);
+	  else
+	    o.interact(robot);
+	  
+	  Log.exit();
 	}
 
 	public void addItem(Item item) {
 	  Log.enter();
 	  
-	  Log.write("[:Field].addItem(item)");
+	  if (UseCases.current.equals("placeOil"))
+	    Log.write("[:Field].addItem(oil)");
+	  else if (UseCases.current.equals("placeTacky"))
+      Log.write("[:Field].addItem(tacky)");
 	  items.add(item);
 	  
 	  Log.exit();
 	}
 
 	public void removeItem(Item item) {
+	  Log.enter();
+	  
 	  Log.write("[:Field].removeItem(item)");
 		items.remove(item);
+		
+		Log.exit();
 	}
 
 	public void placeItems() {
@@ -68,8 +110,8 @@ public class Field {
 	  
 	  Log.write("[:Field].placeItems()");
 	  
-	  for (Robot r: robots)
-	    addItem(r.getItemCache());
+	  if (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky"))
+  	  addItem(robots.get(0).getItemCache());
 	  
 	  Log.exit();
 	}
@@ -96,8 +138,12 @@ public class Field {
 	}
 	
 	public void clearUsedItems() {
+	  Log.enter();
+	  
 	  Log.write("[:Field].clearUsedItems()");
 		usedItems.removeAll(usedItems);
+		
+		Log.exit();
 	}
 	
 	public Robot winner(){

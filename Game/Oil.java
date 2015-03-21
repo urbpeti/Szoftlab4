@@ -13,7 +13,12 @@ public class Oil extends Item {
 
 	@Override
 	public void interact(Robot robot) {
-		System.out.println("interact()");
+	  Log.enter();
+	  
+		Log.write("[:Oil].interact(robot)");
+		
 		robot.setOnOil(true);
+		
+		Log.exit();
 	}
 }
