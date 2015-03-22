@@ -5,45 +5,35 @@ import Setup.UseCases;
 
 public class Timer extends Observable {
 	private int length;
-	
-	public Timer () {
-	  Log.enter();
-	  
-	  Log.write("[Create] Timer");
-	  
-	  Log.exit();
+
+	public Timer() {
+		Log.enter();
+		Log.write("[Create] Timer");
+		Log.exit();
 	}
 
 	private void tick() {
-	  Log.enter();
-	  
-	  Log.write("[:Timer].tick()");
-	  
-	  Log.exit();
+		Log.enter();
+		Log.write("[:Timer].tick()");
+		Log.exit();
 	}
 
 	public boolean ended() {
-	  Log.enter();
-	  
+		Log.enter();
 		Log.write("[:Timer].ended()");
-		
 		Log.exit();
 		return !UseCases.isAllDead;
 	}
 
 	public void start() {
-	  Log.enter();
-	  
+		Log.enter();
 		Log.write("[:Timer].start()");
-		
 		Log.exit();
 	}
-	
+
 	public void end() {
-	  Log.enter();
-	  
+		Log.enter();
 		Log.write("[:Timer].end()");
-		
 		Log.exit();
 	}
 }

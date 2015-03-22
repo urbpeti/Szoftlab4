@@ -5,5 +5,4 @@ public abstract class Item {
 	protected double radius;
 
 	public abstract void interact(Robot robot);
-
 }

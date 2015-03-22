@@ -11,5 +11,4 @@ public class Angle {
 		value = value % 360;
 		this.value = value;
 	}
-	
 }
