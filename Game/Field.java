@@ -22,6 +22,8 @@ public class Field {
 		usedItems = new HashSet<Item>();
 		
 		newRobot("Foo", Color.black);
+		newRobot("Foo", Color.black);
+		newRobot("Foo", Color.black);
 		
 		placeHoles();
 		
@@ -33,10 +35,6 @@ public class Field {
 	  
 	  Log.write("[:Field].newRobot(name,color)");
 	  robots.add(new Robot(name, color));
-	  Log.write("[:Field].newRobot(name,color)");
-    robots.add(new Robot(name, color));
-    Log.write("[:Field].newRobot(name,color)");
-    robots.add(new Robot(name, color));
 	  
 	  Log.exit();
 	}
