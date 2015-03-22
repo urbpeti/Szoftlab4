@@ -15,7 +15,11 @@ public class Timer extends Observable {
 	}
 
 	private void tick() {
+	  Log.enter();
+	  
 	  Log.write("[:Timer].tick()");
+	  
+	  Log.exit();
 	}
 
 	public boolean ended() {
