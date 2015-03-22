@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import Setup.UseCases;
@@ -7,8 +6,9 @@ import Setup.UseCases;
 public class Main {
 
   public static void main(String[] args) {
-	
-	System.out.println("1. Játék indítása \n"
+	//Menüpontok kiírása
+	System.out.println("Válassz az alábbi menüpontok kzül, a megfelelõ use-case lejátszásához!\n"
+					+ "1. Játék indítása \n"
 					+ "2. Gyorsítás, lassítás \n"
 					+ "3. Item lerakása \n"
 					+ "4. Olaj lerakása \n"
@@ -17,13 +17,18 @@ public class Main {
 					+ "7. Olajra lépés \n"
 					+ "8. Ragacsra lépés \n"
 					+ "9. Játék léptetése \n"
-					+ "10. Játék vége \n");
+					+ "10. Játék vége \n\n"
+					+ "Nyomj nullát a kilépéshez!");
 	int place;
 	
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	
 	try {
-		String temp = reader.readLine();
+		String temp;
+		boolean going = true;
+		//Ciklus a menühöz
+		while (going){
+		temp = reader.readLine();
 		place = Integer.parseInt(temp);
 		switch(place){
 			case 1: System.out.println("- 1. Játék indítása");
@@ -71,32 +76,17 @@ public class Main {
 					 if (temp.equals("L"))	UseCases.endGame(false);
 					 else UseCases.endGame(true);
 					 break;
+					 
+			case 0: going = false;
+					break;
+					
+			default: System.out.println("Érvénytelen parancs!");
 				
 		}
-	} catch (IOException e) {
-		System.out.println("Hibás beolvasás!");
 	}
-	
-	
-    /*UseCases.startGame();
-
-    UseCases.endGame(true);
-
-    UseCases.accelerateOrDecelerate(true);
-
-    UseCases.placeItems(true);
-
-    UseCases.placeOil();
-
-    UseCases.placeTacky();
-
-    UseCases.stepGame();
-
-    UseCases.holeInteract();
-
-    UseCases.oilInteract();
-
-    UseCases.tackyInteract();*/
+	} catch (Exception e) {
+		System.out.println("Hibás beolvasás! A program kilép.");
+	}
   }
 
 }
