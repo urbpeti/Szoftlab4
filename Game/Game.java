@@ -7,30 +7,33 @@ public class Game implements Observer {
   private Field field;
   private Timer timer;
 
-  //Constructor
+  // Constructor
   public Game() {
     Log.enter();
-    Log.write("[Create] Game");	//logging the creation of the Game
+    Log.write("[Create] Game");	// Logging the creation of the Game
     Log.exit();
   }
 
-  //Ending the game
+  // Ending the game
   public void endGame() {
     Log.enter();
     Log.write("[:Game].endGame()");
 
-    timer.end();	//Stopping the timer
-    Robot winner = field.winner();	//Getting the winner
+    // Stopping the timer
+    timer.end();
+
+    // Getting the winner
+    Robot winner = field.winner();
 
     Log.exit();
   }
 
-  //Starting the game
+  // Starting the game
   public void startGame() {
     Log.enter();
     Log.write("[:Game].startGame()");
     
-    //Creating new Field and Timer
+    // Creating new Field and Timer
     field = new Field();
     timer = new Timer();
     timer.start();
@@ -39,7 +42,12 @@ public class Game implements Observer {
   }
 
   public void step() {
-	//Stepping the game
+    // Stepping the game
+    // This method is used by three different usecases
+    // so it's split into 3 parts based on the current
+    // usecase's name
+    
+    // Selecting an interact usecase
     if (UseCases.current.equals("holeInteract")
         || UseCases.current.equals("oilInteract")
         || UseCases.current.equals("tackyInteract")) {
@@ -50,7 +58,7 @@ public class Game implements Observer {
     Log.enter();
     Log.write("[:Game].step()");
 
-    //Placing items
+    // Placing items
     if (UseCases.current.equals("placeOil")
         || UseCases.current.equals("placeTacky")) {
       field.placeItems();
@@ -62,7 +70,7 @@ public class Game implements Observer {
       field.clearUsedItems();
     }
 
-    //Ending the game
+    // Ending the game
     if (UseCases.current.equals("endGame")) {
       boolean alldead = field.isAllDead();
       boolean ended = timer.ended();
@@ -73,12 +81,13 @@ public class Game implements Observer {
     Log.exit();
   }
 
-  //Observer handling
+  // Observer handling
   @Override
   public void update() {
     Log.enter();
     Log.write("[:Game].update()");
 
+    // For every tick a step will occur
     step();
 
     Log.exit();

@@ -16,23 +16,23 @@ public class Field {
     Log.enter();
     Log.write("[Create] Field");
     
-    
+    //  Initializing the containers
     items     = new ArrayList<Item>();
     robots    = new ArrayList<Robot>();
     usedItems = new HashSet<Item>();
 
-    //Creating robots
+    //  Creating robots
     newRobot("Foo", Color.black);
     newRobot("Bar", Color.black);
     newRobot("Baz", Color.black);
     
-    //Placing holes
+    //  Placing holes randomly on the field
     placeHoles();
 
     Log.exit();
   }
   
-  //Creating new Robot
+  //  Creating new Robot
   public void newRobot(String name, Color color) {
     Log.enter();
     Log.write("[:Field].newRobot(name, color)");
@@ -42,7 +42,7 @@ public class Field {
     Log.exit();
   }
   
-  //Stepping the game
+  //  Stepping the game
   public void step() {
     if    (UseCases.current.equals("holeInteract")
         || UseCases.current.equals("oilInteract")
@@ -54,7 +54,7 @@ public class Field {
     Log.enter();
     Log.write("[:Field].step()");
     
-    //Jumping, and interactions
+    //  Jumping, and interactions
     for (Robot r : robots) {
       r.jump();
       applyInteraction(r);
@@ -63,11 +63,12 @@ public class Field {
     Log.exit();
   }
 
-  //Interaction handling
+  //  Interaction handling
   public void applyInteraction(Robot robot) {
     Log.enter();
     Log.write("[:Field].applyInteraction(robot)");
 
+    // Creating mock items
     Log.off();
     Item o = new Oil();
     Item t = new Tacky();
@@ -84,7 +85,7 @@ public class Field {
     Log.exit();
   }
   
-  //Adding item to the field
+  //  Adding item to the field
   public void addItem(Item item) {
     Log.enter();
 
@@ -97,7 +98,7 @@ public class Field {
     Log.exit();
   }
 
-  //Removing item from the field
+  //  Removing item from the field
   public void removeItem(Item item) {
     Log.enter();
     Log.write("[:Field].removeItem(item)");
@@ -107,7 +108,7 @@ public class Field {
     Log.exit();
   }
 
-  //Getting which items to place from Robots
+  //  Getting which items to place from Robots
   public void placeItems() {
     Log.enter();
     Log.write("[:Field].placeItems()");
@@ -119,7 +120,7 @@ public class Field {
     Log.exit();
   }
 
-  //Checking if all the Robots are dead
+  //  Checking if all the Robots are dead
   public boolean isAllDead() {
     Log.enter();
     Log.write("[:Field].isAllDead()");
@@ -132,14 +133,14 @@ public class Field {
     return UseCases.isAllDead;
   }
   
-  //Placing holes on the field
+  // Placing holes on the field
   public void placeHoles() {
     Log.enter();
     Log.write("[:Field].placeHoles()");
     Log.exit();
   }
   
-  //Clearing the used items from field
+  // Clearing the used items from field
   public void clearUsedItems() {
     Log.enter();
     Log.write("[:Field].clearUsedItems()");
@@ -149,7 +150,7 @@ public class Field {
     Log.exit();
   }
 
-  //Deciding the winnig Robot
+  // Deciding the winnig Robot
   public Robot winner() {
     Log.enter();
     Log.write("[:Field].winner()");
@@ -157,8 +158,9 @@ public class Field {
     for (Robot r : robots)
       r.getDistance();
 
+    // Creating a mock winner robot
+    // until then logging is turned off
     Log.off();
-    //Creating the winnig robot
     Robot winner = new Robot("Foo", Color.black);
     Log.on();
 
