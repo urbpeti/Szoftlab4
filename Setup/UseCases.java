@@ -85,44 +85,51 @@ public class UseCases {
     
     g.step();
   }
+  
+  
+  public static void stepGame () {
+    current = "stepGame";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.update();
+  }
+  
+  public static void holeInteract () {
+    current = "holeInteract";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.step();
+  }
+  
+  
+  public static void oilInteract () {
+    current = "oilInteract";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.step();
+  }
+  
+  
+  public static void tackyInteract () {
+    current = "tackyInteract";
+    
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
+    
+    g.step();
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

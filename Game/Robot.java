@@ -2,6 +2,8 @@ package Game;
 
 import java.awt.Color;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import Setup.Log;
 import Setup.UseCases;
 
@@ -30,7 +32,11 @@ public class Robot {
 	}
 
 	public void jump () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].jump()");
+		
+		Log.exit();
 	}
 
 	public void accelerate () {
@@ -50,7 +56,11 @@ public class Robot {
 	}
 
 	public Angle getPosition () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].getPosition()");
+		
+		Log.exit();
 		return position;
 	}
 
@@ -64,12 +74,23 @@ public class Robot {
 	}
 
 	public void setIsDead (boolean isDead) {
-		Log.write("[:Robot].setIsDead()");
+	  Log.enter();
+	  
+		Log.write("[:Robot].setIsDead(isDead)");
+		
 		this.isDead = isDead;
+		
+		Log.exit();
 	}
 
 	public void halfSpeed () {
+	  if (UseCases.current.equals("stepGame")) return;
+
+	  Log.enter();
+	  
 		Log.write("[:Robot].halfSpeed()");
+		
+		Log.exit();
 	}
 
 	public Item getItemCache () {
@@ -78,30 +99,43 @@ public class Robot {
 		Log.write("[:Robot].getItemCache()");
 		
 		Log.off();
-		Item itemCache = (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky")) ? new Oil() : new Tacky();
+		Item itemCache =
+		  (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky")) ?
+		    new Oil() : new Tacky();
 		Log.on();
 		
 		Log.exit();
 		return itemCache;
 	}
 
-	public void setItemCache (Item itemCache) {
+	public void setItemCache (Item item) {
 	  Log.enter();
 	  
-		Log.write("[:Robot].setItemCache");
-		this.itemCache = itemCache;
+		Log.write("[:Robot].setItemCache(item)");
+		this.itemCache = item;
 		
 		Log.exit();
 	}
 
 	public boolean getOnOil () {
+	  Log.enter();
+	  
 		Log.write("[:Robot].getOnOil()");
+		
+		Log.exit();
 		return onOil;
 	}
 
 	public void setOnOil (boolean onOil) {
+	  if (UseCases.current.equals("stepGame")) return;
+	  
+	  Log.enter();
+	  
 		Log.write("[:Robot].setOnOil()");
+		
 		this.onOil = onOil;
+		
+		Log.exit();
 	}
 	
 	public int getDistance () {

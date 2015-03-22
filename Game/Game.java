@@ -41,6 +41,14 @@ public class Game implements Observer {
 	}
 
 	public void step() {
+	  if (UseCases.current.equals("holeInteract") ||
+	      UseCases.current.equals("oilInteract")  ||
+	      UseCases.current.equals("tackyInteract")) {
+	    field.step();
+	    
+	    return;
+	  }
+	  
 	  Log.enter();
 	  
 	  Log.write("[:Game].step()");
@@ -48,6 +56,14 @@ public class Game implements Observer {
 	  if (UseCases.current.equals("placeOil") || UseCases.current.equals("placeTacky")) {
       field.placeItems();
     }
+	  
+	  if (UseCases.current.equals("stepGame")) {
+	    field.placeItems();
+	    
+	    field.step();
+	    
+	    field.clearUsedItems();
+	  }
 	  
 	  if (UseCases.current.equals("endGame")) {
 	    boolean alldead = field.isAllDead();
@@ -62,6 +78,12 @@ public class Game implements Observer {
 	
 	@Override
   public void update () {
+	  Log.enter();
+	  
 	  Log.write("[:Game].update()");
+	  
+	  step();
+	  
+	  Log.exit();
   }
 }
