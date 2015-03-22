@@ -19,6 +19,7 @@ public class Robot {
   private boolean isDead;
   private boolean onOil;
 
+  //Constructor
   public Robot(String name, Color color) {
     Log.enter();
     Log.write("[Create] Robot");
@@ -29,24 +30,28 @@ public class Robot {
     Log.exit();
   }
 
+  //Moving the Robot
   public void jump() {
     Log.enter();
     Log.write("[:Robot].jump()");
     Log.exit();
   }
 
+  //Accelerating
   public void accelerate() {
     Log.enter();
     Log.write("[:Robot].accelerate()");
     Log.exit();
   }
 
+  //Decelerating
   public void decelerate() {
     Log.enter();
     Log.write("[:Robot].decelerate()");
     Log.exit();
   }
 
+  //Returns the robot's position in Angle
   public Angle getPosition() {
     Log.enter();
     Log.write("[:Robot].getPosition()");
@@ -55,6 +60,7 @@ public class Robot {
     return position;
   }
 
+  //Returns true if the robot is dead, false otherwise
   public boolean getIsDead() {
     Log.enter();
     Log.write("[:Robot].getIsDead()");
@@ -63,6 +69,7 @@ public class Robot {
     return isDead;
   }
 
+  //Sets the robot's isDead variable
   public void setIsDead(boolean isDead) {
     Log.enter();
     Log.write("[:Robot].setIsDead(isDead)");
@@ -72,6 +79,7 @@ public class Robot {
     Log.exit();
   }
 
+  //Halves the robot's speed
   public void halfSpeed() {
     if (UseCases.current.equals("stepGame")) return;
 
@@ -80,6 +88,7 @@ public class Robot {
     Log.exit();
   }
 
+  //Returns what item the robot will place next
   public Item getItemCache() {
     Log.enter();
     Log.write("[:Robot].getItemCache()");
@@ -95,6 +104,7 @@ public class Robot {
     return itemCache;
   }
 
+  //Sets what item will the robot place next
   public void setItemCache(Item item) {
     Log.enter();
     Log.write("[:Robot].setItemCache(item)");
@@ -104,6 +114,7 @@ public class Robot {
     Log.exit();
   }
 
+  //Returns if the robot is on oil or not
   public boolean getOnOil() {
     Log.enter();
     Log.write("[:Robot].getOnOil()");
@@ -112,6 +123,7 @@ public class Robot {
     return onOil;
   }
 
+  //Sets the robots onOil, meaning is the robot is currently standing on oil or not
   public void setOnOil(boolean onOil) {
     if (UseCases.current.equals("stepGame")) return;
 
@@ -123,6 +135,7 @@ public class Robot {
     Log.exit();
   }
 
+  //Returns the amount of distance the robot has travelled, from the starting of the game
   public int getDistance() {
     Log.enter();
     Log.write("[:Robot].getDistance()");

@@ -7,26 +7,30 @@ public class Game implements Observer {
   private Field field;
   private Timer timer;
 
+  //Constructor
   public Game() {
     Log.enter();
-    Log.write("[Create] Game");
+    Log.write("[Create] Game");	//logging the creation of the Game
     Log.exit();
   }
 
+  //Ending the game
   public void endGame() {
     Log.enter();
     Log.write("[:Game].endGame()");
 
-    timer.end();
-    Robot winner = field.winner();
+    timer.end();	//Stopping the timer
+    Robot winner = field.winner();	//Getting the winner
 
     Log.exit();
   }
 
+  //Starting the game
   public void startGame() {
     Log.enter();
     Log.write("[:Game].startGame()");
-
+    
+    //Creating new Field and Timer
     field = new Field();
     timer = new Timer();
     timer.start();
@@ -35,6 +39,7 @@ public class Game implements Observer {
   }
 
   public void step() {
+	//Stepping the game
     if (UseCases.current.equals("holeInteract")
         || UseCases.current.equals("oilInteract")
         || UseCases.current.equals("tackyInteract")) {
@@ -45,6 +50,7 @@ public class Game implements Observer {
     Log.enter();
     Log.write("[:Game].step()");
 
+    //Placing items
     if (UseCases.current.equals("placeOil")
         || UseCases.current.equals("placeTacky")) {
       field.placeItems();
@@ -56,6 +62,7 @@ public class Game implements Observer {
       field.clearUsedItems();
     }
 
+    //Ending the game
     if (UseCases.current.equals("endGame")) {
       boolean alldead = field.isAllDead();
       boolean ended = timer.ended();
@@ -66,6 +73,7 @@ public class Game implements Observer {
     Log.exit();
   }
 
+  //Observer handling
   @Override
   public void update() {
     Log.enter();

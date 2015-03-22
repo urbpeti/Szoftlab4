@@ -85,6 +85,7 @@ public class Main {
 		}
 	}
 	} catch (Exception e) {
+		// Rossz billentyûlenyomás esetén kilép a program
 		System.out.println("Hibás beolvasás! A program kilép.");
 	}
   }
