@@ -134,7 +134,7 @@ public class Field {
 		
 		Log.exit();
 	}
-	
+
 	public void clearUsedItems() {
 	  Log.enter();
 	  

@@ -39,7 +39,7 @@ public class Game implements Observer {
 		
 	  Log.exit();
 	}
-	
+
 	public void step() {
 	  if (UseCases.current.equals("holeInteract") ||
 	      UseCases.current.equals("oilInteract")  ||
