@@ -2,6 +2,8 @@ package Game;
 
 import java.util.ArrayList;
 
+import Setup.Log;
+
 public class Observable {
   private ArrayList<Observer> observers;
 

@@ -1,5 +1,7 @@
 package Game;
 
+import Setup.Log;
+
 public class Angle {
   private double value;
 

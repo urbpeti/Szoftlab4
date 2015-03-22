@@ -14,6 +14,8 @@ public class Log {
   public static void write (String msg) {
     if (!logging) return;
     
+    System.out.print(">");
+    
     for (int i = 0; i < level * TABSIZE; ++i) System.out.print(" ");
     
     System.out.println(msg);
