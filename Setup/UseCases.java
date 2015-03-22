@@ -5,129 +5,128 @@ import java.awt.Color;
 import Game.*;
 
 public class UseCases {
-	public static String current = "None"; // Mark the current usecase (so it's
-											// possible to split methods to more
-											// usecase)
+  public static String current = "None"; // Mark the current usecase (so it's
+                                         // possible to split methods to more
+                                         // usecase)
 
-	public static void startGame() {
-		current = "startGame";
+  public static void startGame() {
+    current = "startGame";
 
-		Game g = new Game();
+    Game g = new Game();
+    g.startGame();
+  }
 
-		g.startGame();
-	}
+  
+  public static boolean isAllDead = false;
+  public static void endGame (boolean alldead) {
+    current = "endGame";
+    isAllDead = alldead;
 
-	public static boolean isAllDead = false;
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-	public static void endGame(boolean alldead) {
-		current = "endGame";
-		isAllDead = alldead;
+    g.step();
+  }
 
-		Log.off();
 
-		Game g = new Game();
-		g.startGame();
+  public static boolean isAccelerate = false;
+  public static void accelerateOrDecelerate (boolean acc) {
+    current = "accelerateOrDecelerate";
+    isAccelerate = acc;
 
-		Log.on();
+    Log.off();
+    Robot r = new Robot("Foo", Color.black);
+    Log.on();
 
-		g.step();
-	}
+    if (isAccelerate) r.accelerate();
+    else              r.decelerate();
+  }
 
-	public static boolean isAccelerate = false;
 
-	public static void accelerateOrDecelerate(boolean acc) {
-		current = "accelerateOrDecelerate";
-		isAccelerate = acc;
+  public static boolean isOil = false;
+  public static void placeItems (boolean oil) {
+    current = "placeItems";
+    isOil = oil;
 
-		Log.off();
-		Robot r = new Robot("Foo", Color.black);
-		Log.on();
+    Log.off();
+    Robot r = new Robot("Foo", Color.black);
+    Log.on();
 
-		if (isAccelerate)
-			r.accelerate();
-		else
-			r.decelerate();
-	}
+    if (isOil) r.setItemCache(new Oil());
+    else       r.setItemCache(new Tacky());
+  }
+  
+  
+  public static void placeOil() {
+    current = "placeOil";
 
-	public static boolean isOil = false;
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-	public static void placeItems(boolean oil) {
-		current = "placeItems";
-		isOil = oil;
+    g.step();
+  }
 
-		Log.off();
-		Robot r = new Robot("Foo", Color.black);
-		Log.on();
+  
+  public static void placeTacky() {
+    current = "placeTacky";
 
-		if (isOil)
-			r.setItemCache(new Oil());
-		else
-			r.setItemCache(new Tacky());
-	}
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-	public static void placeOil() {
-		current = "placeOil";
+    g.step();
+  }
+  
+  
+  public static void stepGame() {
+    current = "stepGame";
 
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-		g.step();
-	}
+    g.update();
+  }
 
-	public static void placeTacky() {
-		current = "placeTacky";
+  
+  public static void holeInteract() {
+    current = "holeInteract";
 
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-		g.step();
-	}
+    g.step();
+  }
 
-	public static void stepGame() {
-		current = "stepGame";
+  
+  public static void oilInteract() {
+    current = "oilInteract";
 
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-		g.update();
-	}
+    g.step();
+  }
 
-	public static void holeInteract() {
-		current = "holeInteract";
+  
+  public static void tackyInteract() {
+    current = "tackyInteract";
 
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
+    Log.off();
+    Game g = new Game();
+    g.startGame();
+    Log.on();
 
-		g.step();
-	}
-
-	public static void oilInteract() {
-		current = "oilInteract";
-
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
-
-		g.step();
-	}
-
-	public static void tackyInteract() {
-		current = "tackyInteract";
-
-		Log.off();
-		Game g = new Game();
-		g.startGame();
-		Log.on();
-
-		g.step();
-	}
+    g.step();
+  }
 }

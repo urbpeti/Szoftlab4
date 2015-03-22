@@ -1,131 +1,133 @@
 package Game;
 
 import java.awt.Color;
-
 import javax.jws.soap.SOAPBinding.Use;
 
 import Setup.Log;
 import Setup.UseCases;
 
 public class Robot {
-	private String name;
-	private Color color;
-	private Angle position;
-	private Item itemCache;
+  private String name;
+  private Color color;
+  private Angle position;
+  private Item itemCache;
 
-	private double distance;
-	private double velocity;
-	private double delta;
+  private double distance;
+  private double velocity;
+  private double delta;
 
-	private boolean isDead;
-	private boolean onOil;
+  private boolean isDead;
+  private boolean onOil;
 
-	public Robot(String name, Color color) {
-		Log.enter();
-		Log.write("[Create] Robot");
+  public Robot(String name, Color color) {
+    Log.enter();
+    Log.write("[Create] Robot");
 
-		this.name = name;
-		this.color = color;
+    this.name = name;
+    this.color = color;
 
-		Log.exit();
-	}
+    Log.exit();
+  }
 
-	public void jump() {
-		Log.enter();
-		Log.write("[:Robot].jump()");
-		Log.exit();
-	}
+  public void jump() {
+    Log.enter();
+    Log.write("[:Robot].jump()");
+    Log.exit();
+  }
 
-	public void accelerate() {
-		Log.enter();
-		Log.write("[:Robot].accelerate()");
-		Log.exit();
-	}
+  public void accelerate() {
+    Log.enter();
+    Log.write("[:Robot].accelerate()");
+    Log.exit();
+  }
 
-	public void decelerate() {
-		Log.enter();
-		Log.write("[:Robot].decelerate()");
-		Log.exit();
-	}
+  public void decelerate() {
+    Log.enter();
+    Log.write("[:Robot].decelerate()");
+    Log.exit();
+  }
 
-	public Angle getPosition() {
-		Log.enter();
-		Log.write("[:Robot].getPosition()");
-		Log.exit();
-		return position;
-	}
+  public Angle getPosition() {
+    Log.enter();
+    Log.write("[:Robot].getPosition()");
+    Log.exit();
 
-	public boolean getIsDead() {
-		Log.enter();
-		Log.write("[:Robot].getIsDead()");
-		Log.exit();
-		return isDead;
-	}
+    return position;
+  }
 
-	public void setIsDead(boolean isDead) {
-		Log.enter();
-		Log.write("[:Robot].setIsDead(isDead)");
+  public boolean getIsDead() {
+    Log.enter();
+    Log.write("[:Robot].getIsDead()");
+    Log.exit();
 
-		this.isDead = isDead;
+    return isDead;
+  }
 
-		Log.exit();
-	}
+  public void setIsDead(boolean isDead) {
+    Log.enter();
+    Log.write("[:Robot].setIsDead(isDead)");
 
-	public void halfSpeed() {
-		if (UseCases.current.equals("stepGame"))
-			return;
+    this.isDead = isDead;
 
-		Log.enter();
-		Log.write("[:Robot].halfSpeed()");
-		Log.exit();
-	}
+    Log.exit();
+  }
 
-	public Item getItemCache() {
-		Log.enter();
-		Log.write("[:Robot].getItemCache()");
-		Log.off();
+  public void halfSpeed() {
+    if (UseCases.current.equals("stepGame")) return;
 
-		boolean isOilOrTacky = UseCases.current.equals("placeOil")
-				|| UseCases.current.equals("placeTacky");
-		Item itemCache = isOilOrTacky ? new Oil() : new Tacky();
+    Log.enter();
+    Log.write("[:Robot].halfSpeed()");
+    Log.exit();
+  }
 
-		Log.on();
-		Log.exit();
-		return itemCache;
-	}
+  public Item getItemCache() {
+    Log.enter();
+    Log.write("[:Robot].getItemCache()");
+    
+    Log.off();
+    boolean isOilOrTacky = UseCases.current.equals("placeOil")
+                        || UseCases.current.equals("placeTacky");
+    Item itemCache = isOilOrTacky ? new Oil() : new Tacky();
+    Log.on();
+    
+    Log.exit();
 
-	public void setItemCache(Item item) {
-		Log.enter();
-		Log.write("[:Robot].setItemCache(item)");
+    return itemCache;
+  }
 
-		this.itemCache = item;
+  public void setItemCache(Item item) {
+    Log.enter();
+    Log.write("[:Robot].setItemCache(item)");
 
-		Log.exit();
-	}
+    this.itemCache = item;
 
-	public boolean getOnOil() {
-		Log.enter();
-		Log.write("[:Robot].getOnOil()");
-		Log.exit();
-		return onOil;
-	}
+    Log.exit();
+  }
 
-	public void setOnOil(boolean onOil) {
-		if (UseCases.current.equals("stepGame"))
-			return;
+  public boolean getOnOil() {
+    Log.enter();
+    Log.write("[:Robot].getOnOil()");
+    Log.exit();
 
-		Log.enter();
-		Log.write("[:Robot].setOnOil()");
+    return onOil;
+  }
 
-		this.onOil = onOil;
+  public void setOnOil(boolean onOil) {
+    if (UseCases.current.equals("stepGame")) return;
 
-		Log.exit();
-	}
+    Log.enter();
+    Log.write("[:Robot].setOnOil()");
 
-	public int getDistance() {
-		Log.enter();
-		Log.write("[:Robot].getDistance()");
-		Log.exit();
-		return 0;
-	}
+    this.onOil = onOil;
+
+    Log.exit();
+  }
+
+  public int getDistance() {
+    Log.enter();
+    Log.write("[:Robot].getDistance()");
+    Log.exit();
+
+    return 0;
+  }
 }

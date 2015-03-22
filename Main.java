@@ -1,25 +1,27 @@
 import Setup.UseCases;
 
 public class Main {
-	public static void main(String[] args) {
-		UseCases.startGame();
 
-		UseCases.endGame(true);
+  public static void main(String[] args) {
+    UseCases.startGame();
 
-		UseCases.accelerateOrDecelerate(true);
+    UseCases.endGame(true);
 
-		UseCases.placeItems(true);
+    UseCases.accelerateOrDecelerate(true);
 
-		UseCases.placeOil();
+    UseCases.placeItems(true);
 
-		UseCases.placeTacky();
+    UseCases.placeOil();
 
-		UseCases.stepGame();
+    UseCases.placeTacky();
 
-		UseCases.holeInteract();
+    UseCases.stepGame();
 
-		UseCases.oilInteract();
+    UseCases.holeInteract();
 
-		UseCases.tackyInteract();
-	}
+    UseCases.oilInteract();
+
+    UseCases.tackyInteract();
+  }
+
 }

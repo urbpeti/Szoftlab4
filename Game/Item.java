@@ -1,8 +1,8 @@
 package Game;
 
 public abstract class Item {
-	protected Angle position;
-	protected double radius;
+  protected Angle position;
+  protected double radius;
 
-	public abstract void interact(Robot robot);
+  public abstract void interact(Robot robot);
 }

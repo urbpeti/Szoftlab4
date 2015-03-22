@@ -3,21 +3,33 @@ package Game;
 import java.util.ArrayList;
 
 public class Observable {
-	private ArrayList<Observer> observers;
+  private ArrayList<Observer> observers;
 
-	private void register(Observer observer) {
-		System.out.println("[:Observable].register(observer)");
-		observers.add(observer);
-	}
+  private void register(Observer observer) {
+    Log.enter();
+    Log.write("[:Observable].register(observer)");
 
-	private void unregister(Observer observer) {
-		System.out.println("[:Observable].unregister(observer)");
-		observers.remove(observer);
-	}
+    observers.add(observer);
 
-	private void notifyObservers() {
-		for (Observer observer : observers) {
-			observer.update();
-		}
-	}
+    Log.exit();
+  }
+
+  private void unregister(Observer observer) {
+    Log.enter();
+    Log.write("[:Observable].unregister(observer)");
+
+    observers.remove(observer);
+
+    Log.exit();
+  }
+
+  private void notifyObservers() {
+    Log.enter();
+    Log.write("[:Observable].notifyObservers()");
+    
+    for (Observer observer : observers)
+      observer.update();
+
+    Log.exit();
+  }
 }
