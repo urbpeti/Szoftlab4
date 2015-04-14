@@ -7,7 +7,7 @@ import Setup.Log;
 public class Observable {
   private ArrayList<Observer> observers;
 
-  private void register(Observer observer) {
+  public void register(Observer observer) {
     Log.enter();
     Log.write("[:Observable].register(observer)");
 
@@ -16,7 +16,7 @@ public class Observable {
     Log.exit();
   }
 
-  private void unregister(Observer observer) {
+  public void unregister(Observer observer) {
     Log.enter();
     Log.write("[:Observable].unregister(observer)");
 
@@ -25,7 +25,7 @@ public class Observable {
     Log.exit();
   }
 
-  private void notifyObservers() {
+  public void notifyObservers() {
     Log.enter();
     Log.write("[:Observable].notifyObservers()");
     

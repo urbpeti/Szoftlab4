@@ -1,22 +1,26 @@
 package Game;
 
-import Setup.Log;
-
 public class Oil extends Item {
+  protected int expiration;
+  
   public Oil() {
-    Log.enter();
-    Log.write("[Create] Oil");	// Logging oil creation
-    Log.exit();
   }
 
   // Oil interaction with Robot
   @Override
   public void interact(Robot robot) {
-    Log.enter();
-    Log.write("[:Oil].interact(robot)");
-
     robot.setOnOil(true);
-
-    Log.exit();
+  }
+  
+  public void setExpiration(int e) {
+    expiration = e;
+  }
+  
+  public int getExpiration() {
+    return expiration;
+  }
+  
+  public boolean exists() {
+    return false;
   }
 }
