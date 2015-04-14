@@ -1,7 +1,5 @@
 package Game;
 
-import Setup.Log;
-
 public class Worker extends Creature {
   private int cleaningTime;
   
@@ -10,9 +8,7 @@ public class Worker extends Creature {
   }
   
   public void jump() {
-    Log.enter();
-    Log.write("[:Worker].jump()");
-    Log.exit();
+    
   }
   
   public int getCleaningTime() {
