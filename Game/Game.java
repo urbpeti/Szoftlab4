@@ -20,6 +20,7 @@ public class Game implements Observer {
   
   public void step() {
     // Stepping the game
+	field.clearOil();
     field.placeItems();
     field.step();
     
