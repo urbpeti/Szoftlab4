@@ -13,9 +13,9 @@ public class Field {
 		robots = new ArrayList<Robot>();
 
 		// Creating robots
-		newRobot("Foo", Color.black);
+		/*newRobot("Foo", Color.black);
 		newRobot("Bar", Color.black);
-		newRobot("Baz", Color.black);
+		newRobot("Baz", Color.black);*/
 
 		// Placing holes randomly on the field
 		placeHoles();

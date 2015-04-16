@@ -18,6 +18,7 @@ public class GameTimer extends Observable {
 
   // One step, or tick for the Timer
   private void tick() {
+    System.out.println("TICKED");
     notifyObservers();
   }
 

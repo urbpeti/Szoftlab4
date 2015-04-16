@@ -10,25 +10,26 @@ public class Game implements Observer {
     field = new Field();
     
     timer = new GameTimer();
-    timer.register(this);
   }
   
   //Starting the game
- public void startGame() {
-   timer.start();
- }
+  public void startGame() {
+    timer.register(this);
+    
+    timer.start();
+  }
   
   public void step() {
     // Stepping the game
-	field.clearOil();
+	  field.clearOil();
     field.placeItems();
     field.step();
     
-    // Ending the game
+    // Check if game ended
     boolean alldead = field.isAllDead();
     boolean ended = timer.ended();
 
-    if (alldead || ended) endGame();
+    //if (alldead || ended) endGame();
   }
 
   // Ending the game
@@ -37,7 +38,8 @@ public class Game implements Observer {
     timer.end();
 
     // Getting the winner
-    Robot winner = field.winner();
+    
+    //timer.unregister(this);
   }
 
   // Observer handling
