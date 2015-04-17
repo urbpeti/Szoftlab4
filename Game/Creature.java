@@ -2,10 +2,10 @@ package Game;
 
 public abstract class Creature {
   protected Angle position;
+  protected double velocity;
+  protected double distance;
+  protected double delta;
 
-  private double distance;
-  private double velocity;
-  private double delta;
   private boolean isDead;
 
   // Constructor
