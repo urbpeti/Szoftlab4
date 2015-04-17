@@ -2,7 +2,7 @@ package Game;
 
 public class Hole extends Item {
   public Hole() {
-    
+
   }
 
   @Override

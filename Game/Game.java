@@ -8,28 +8,28 @@ public class Game implements Observer {
   public Game() {
     // Creating Field and Timer
     field = new Field();
-    
+
     timer = new GameTimer();
   }
-  
-  //Starting the game
+
+  // Starting the game
   public void startGame() {
     timer.register(this);
-    
+
     timer.start();
   }
-  
+
   public void step() {
     // Stepping the game
-	  field.clearOil();
+    field.clearOil();
     field.placeItems();
     field.step();
-    
+
     // Check if game ended
     boolean alldead = field.isAllDead();
     boolean ended = timer.ended();
 
-    //if (alldead || ended) endGame();
+    // if (alldead || ended) endGame();
   }
 
   // Ending the game
@@ -38,8 +38,8 @@ public class Game implements Observer {
     timer.end();
 
     // Getting the winner
-    
-    //timer.unregister(this);
+
+    // timer.unregister(this);
   }
 
   // Observer handling

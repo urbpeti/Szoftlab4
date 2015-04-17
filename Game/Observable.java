@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Observable {
   private ArrayList<Observer> observers;
-  
+
   public Observable() {
     observers = new ArrayList<Observer>();
   }
@@ -16,8 +16,9 @@ public class Observable {
   public void unregister(Observer observer) {
     observers.remove(observer);
   }
-  
+
   public void notifyObservers() {
-    for (Observer o: observers) o.update();
+    for (Observer o : observers)
+      o.update();
   }
 }

@@ -13,27 +13,26 @@ public class Robot extends Creature {
     this.name = name;
     this.color = color;
   }
-  
-  
+
   public void jump() {
-    
+
   }
-  
+
   // Accelerating
   public void accelerate() {
-    
+
   }
 
   // Decelerating
   public void decelerate() {
-    
+
   }
 
   // Halves the robot's speed
   public void halfSpeed() {
     double v = getVelocity();
     v /= 2;
-    
+
     setVelocity(v);
   }
 
@@ -52,7 +51,8 @@ public class Robot extends Creature {
     return onOil;
   }
 
-  // Sets the robots onOil, meaning is the robot is currently standing on oil or not
+  // Sets the robots onOil, meaning is the robot is currently standing on oil or
+  // not
   public void setOnOil(boolean onOil) {
     this.onOil = onOil;
   }
