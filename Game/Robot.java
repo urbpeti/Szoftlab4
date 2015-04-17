@@ -15,17 +15,22 @@ public class Robot extends Creature {
   }
 
   public void jump() {
-
+    velocity += delta;
+    delta = 0;
+    distance += Math.abs(velocity);
+    position.addAngle(velocity);
   }
 
   // Accelerating
   public void accelerate() {
-
+    if (delta < 10)
+      delta += 10;
   }
 
   // Decelerating
   public void decelerate() {
-
+    if (delta > 10)
+      delta -= 10;
   }
 
   // Halves the robot's speed

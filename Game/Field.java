@@ -30,9 +30,11 @@ public class Field {
 
   // Stepping the game
   public void step() {
+    stepWorkers();
     // Jumping, and interactions
     for (Robot r : robots) {
       r.jump();
+      checkCollision(r);
       applyInteraction(r);
     }
   }
@@ -102,7 +104,7 @@ public class Field {
   }
 
   public void checkCollision(Robot r) {
-
+    
   }
 
   public void stepWorkers() {
