@@ -9,7 +9,12 @@ public class Angle {
   }
 
   public void setAngle(double value) {
-    value %= 360;	                    	// Doing more circles does not have any plus effect here
+    value %= 360; // Doing more circles does not have any plus effect here
     this.value = value;
+  }
+
+  public void addAngle(double angle) {
+    value += angle;
+    value %= 360;
   }
 }
