@@ -1,6 +1,5 @@
 package Game;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class Field {
@@ -12,20 +11,15 @@ public class Field {
     // Initializing the containers
     items = new ArrayList<Item>();
     robots = new ArrayList<Robot>();
-
-    // Creating robots
-    /*
-     * newRobot("Foo", Color.black); newRobot("Bar", Color.black);
-     * newRobot("Baz", Color.black);
-     */
+    workers = new ArrayList<Worker>();
 
     // Placing holes randomly on the field
     placeHoles();
   }
 
   // Creating new Robot
-  public void newRobot(String name, Color color) {
-    robots.add(new Robot(name, color));
+  public void newRobot(Robot r) {
+    robots.add(r);
   }
 
   // Stepping the game
@@ -77,14 +71,14 @@ public class Field {
 
   }
 
-  // Deciding the winnig Robot
+  // Deciding the winning Robot
   public Robot winner() {
     for (Robot r : robots)
       r.getDistance();
 
-    Robot winner = new Robot("Foo", Color.black);
+    //Robot winner = new Robot("Foo", Color.black);
 
-    return winner;
+    return null;
   }
 
   // Check witch Oil is expired
@@ -100,11 +94,25 @@ public class Field {
   }
 
   public void newWorker() {
-
+    //workers.add(new Worker(new Angle()));
   }
 
-  public void checkCollision(Robot r) {
-    
+  public void checkCollision(Robot current) {
+    for (Robot r: robots) {
+      if (r == current || r.getIsDead()) continue;
+      if (current.inRangeOf(r)) {
+        double cv  = current.getVelocity();
+        double rv  = r.getVelocity();
+        double acv = Math.abs(cv);
+        double arv = Math.abs(rv);
+        
+        Robot winner = acv > arv ? current : r;
+        Robot loser  = acv > arv ? r : current;
+        
+        winner.setVelocity((cv + rv) / 2);
+        loser.setIsDead(true);
+      }
+    }
   }
 
   public void stepWorkers() {
@@ -116,5 +124,9 @@ public class Field {
 
   public void workerCollide(Worker w) {
 
+  }
+  
+  public ArrayList<Robot> getRobots() {
+    return robots;
   }
 }

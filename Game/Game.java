@@ -5,9 +5,9 @@ public class Game implements Observer {
   private GameTimer timer;
 
   // Constructor
-  public Game() {
+  public Game(Field f) {
     // Creating Field and Timer
-    field = new Field();
+    field = f;
 
     timer = new GameTimer();
   }
@@ -47,5 +47,9 @@ public class Game implements Observer {
   public void update() {
     // For every tick a step will occur
     step();
+  }
+  
+  public Field getField() {
+    return field;
   }
 }
