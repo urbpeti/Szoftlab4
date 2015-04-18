@@ -10,9 +10,6 @@ public abstract class Creature {
 
   // Constructor
 
-  // Moving the Robot
-  public abstract void jump();
-
   // Returns the robot's position in Angle
   public Angle getPosition() {
     return position;
@@ -52,5 +49,11 @@ public abstract class Creature {
   // Sets the robot's isDead variable
   public void setIsDead(boolean isDead) {
     this.isDead = isDead;
+  }
+  
+  public boolean inRangeOf(Creature c) {
+    double dist = getPosition().distance(c.getPosition());
+    
+    return dist < 0.5;
   }
 }

@@ -26,7 +26,7 @@ public class Angle {
   
   public double distance(Angle a) {
     double ad   = a.getAngle();
-    double dist = Math.min(Math.abs((value - ad)),360 - Math.abs((value - ad)));
+    double dist = Math.min(Math.abs((value - ad)), 360 - Math.abs((value - ad)));
     
     return Math.abs(dist);
   }

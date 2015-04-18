@@ -10,13 +10,14 @@ public class Robot extends Creature {
 
   // Constructor
   public Robot(String name, Color color, Angle pos, double v) {
-    this.name = name;
-    this.color = color;
+    this.name     = name;
+    this.color    = color;
     this.position = pos;
     this.velocity = v;
-    this.delta = 0;
+    this.delta    = 0;
   }
-
+  
+  //Moving the Robot
   public void jump() {
     velocity += delta;
     delta = 0;
@@ -63,12 +64,6 @@ public class Robot extends Creature {
   // not
   public void setOnOil(boolean onOil) {
     this.onOil = onOil;
-  }
-  
-  public boolean inRangeOf(Robot r) {
-    double dist = getPosition().distance(r.getPosition());
-    
-    return dist < 0.5;
   }
   
   public String toString() {

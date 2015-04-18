@@ -3,7 +3,9 @@ package Game;
 public class Tacky extends Item {
   protected int count;
 
-  public Tacky() {
+  public Tacky(Angle a) {
+    super(a);
+    count = 4;
   }
 
   // Tacky interaction with Robot
@@ -24,5 +26,9 @@ public class Tacky extends Item {
 
   public boolean exists() {
     return false;
+  }
+  
+  public String toString() {
+    return "Tacky " + position + " " + count;
   }
 }

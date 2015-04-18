@@ -2,8 +2,10 @@ package Game;
 
 public class Oil extends Item {
   protected int expiration;
-  
-  public Oil() {
+
+  public Oil(Angle a) {
+    super(a);
+    expiration = 10;
   }
 
   // Oil interaction with Robot
@@ -22,5 +24,9 @@ public class Oil extends Item {
   
   public boolean exists() {
     return false;
+  }
+  
+  public String toString() {
+    return "Oil " + position + " " + expiration;
   }
 }
