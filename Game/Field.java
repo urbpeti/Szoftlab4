@@ -101,7 +101,11 @@ public class Field {
 
   // Interaction handling
   public void applyInteraction(Robot robot) {
-
+    Item i = items.get(robot.position.getAngle());
+    
+    if (i == null) return;
+    
+    i.interact(robot);
   }
 
   // Adding item to the field

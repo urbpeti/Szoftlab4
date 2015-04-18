@@ -36,7 +36,7 @@ public class Tester {
     f = new Field();
     g = new Game(f);
 
-    BufferedReader br = new BufferedReader(new FileReader("tests/rwc.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("tests/wc.txt"));
     try {
       String line = br.readLine();
 
@@ -48,6 +48,10 @@ public class Tester {
         else if (cmd.equals("Worker"))       addWorker(as);
         else if (cmd.equals("Item"))         addItem(as);
         else if (cmd.equals("Step"))         g.step();
+        else if (cmd.equals("Decelerate"))   decelerate(as);
+        else if (cmd.equals("Accelerate"))   accelerate(as);
+        else if (cmd.equals("Put"))          put(as);
+        
         else if (cmd.equals("List_Robots"))  listRobots();
         else if (cmd.equals("List_Workers")) listWorkers();
         else if (cmd.equals("List_Items"))   listItems();
@@ -57,6 +61,39 @@ public class Tester {
     } finally {
       br.close();
     }
+  }
+
+  private static void put(String[] args) {
+    String name = args[1];
+    String type = args[2];
+    
+    Robot robot = null;
+    for (Robot r: f.getRobots())
+      if (r.getName().equals(name)) robot = r;
+    
+    if (robot == null) return;
+    
+    Item i = type.equals("Oil") ? new Oil(robot.getPosition()) : new Tacky(robot.getPosition()); 
+     
+    robot.setItemCache(i);
+  }
+
+  private static void decelerate(String[] args) {
+    Robot robot = null;
+    for (Robot r: f.getRobots())
+      if (r.getName().equals(args[1])) robot = r;
+    
+    if (robot == null) return;
+    
+    robot.decelerate();
+  }
+  
+  private static void accelerate(String[] args) {
+    Robot robot = null;
+    for (Robot r: f.getRobots())
+      if (r.getName().equals(args[1])) robot = r;
+    
+    robot.accelerate();
   }
 
   private static void addItem(String[] args) {
@@ -72,7 +109,7 @@ public class Tester {
     Angle p  = new Angle(Double.parseDouble(args[1]));
     double v = Double.parseDouble(args[2]);
     
-    f.newWorker(new Worker(p, v));
+    f.newWorker(new Worker(p, v, f));
   }
 
   private static void addRobot(String[] args) {

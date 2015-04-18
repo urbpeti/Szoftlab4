@@ -19,7 +19,11 @@ public class Robot extends Creature {
   
   //Moving the Robot
   public void jump() {
-    velocity += delta;
+    if (getIsDead()) return;
+    
+    if (getOnOil()) setOnOil(false);
+    else velocity += delta;
+    
     delta = 0;
     distance += Math.abs(velocity);
     position.addAngle(velocity);
@@ -33,7 +37,7 @@ public class Robot extends Creature {
 
   // Decelerating
   public void decelerate() {
-    if (delta > 10)
+    if (delta > -10)
       delta -= 10;
   }
 
@@ -66,8 +70,14 @@ public class Robot extends Creature {
     this.onOil = onOil;
   }
   
+  public String getName() {
+    return name;
+  }
+  
   public String toString() {
     String s = getIsDead() ? "Dead" : "Alive";
-    return name + " " + position + " " + s + " " + velocity;
+    String o = getOnOil() ? "Oily" : "Not Oily";
+    return name + ", Position: " + position + ", Velocity: " + velocity +
+        /*", Delta: " + delta + */", " + o + ", " + s ;
   }
 }
