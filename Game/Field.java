@@ -26,42 +26,45 @@ public class Field {
 
   // Stepping the game
   public void step() {
-    
+
     stepWorkers();
-    
+
     // Jumping, and interactions
-    
+
     for (Robot r : robots) {
       r.jump();
-    
+
       checkCollision(r);
     }
-    
+
     for (Robot r : robots) {
       applyInteraction(r);
     }
   }
-  
+
   public void checkCollision(Robot current) {
-    for (Worker w: workers) {
-      if (w.getIsDead()) continue;
-      if (!current.inRangeOf(w)) continue;
-      
+    for (Worker w : workers) {
+      if (w.getIsDead())
+        continue;
+      if (!current.inRangeOf(w))
+        continue;
+
       w.setIsDead(true);
       addItem(new Oil(w.getPosition()));
     }
-    
-    for (Robot r: robots) {
-      if (r == current || r.getIsDead()) continue;
+
+    for (Robot r : robots) {
+      if (r == current || r.getIsDead())
+        continue;
       if (current.inRangeOf(r)) {
-        double cv  = current.getVelocity();
-        double rv  = r.getVelocity();
+        double cv = current.getVelocity();
+        double rv = r.getVelocity();
         double acv = Math.abs(cv);
         double arv = Math.abs(rv);
-        
+
         Robot winner = acv > arv ? current : r;
-        Robot loser  = acv > arv ? r : current;
-        
+        Robot loser = acv > arv ? r : current;
+
         winner.setVelocity((cv + rv) / 2);
         loser.setIsDead(true);
       }
@@ -72,25 +75,28 @@ public class Field {
     for (Worker worker : workers) {
       worker.jump();
     }
-    
+
     for (Worker worker : workers) {
-      if (worker.isCleaning()) continue;
+      if (worker.isCleaning())
+        continue;
       workerCollide(worker);
     }
   }
 
   public void workerCollide(Worker current) {
-    for (Worker w: workers) {
-      if (w == current || w.getIsDead()) continue;
+    for (Worker w : workers) {
+      if (w == current || w.getIsDead())
+        continue;
       if (current.inRangeOf(w)) {
         double v = current.getVelocity();
         current.setVelocity(-v);
         return;
       }
     }
-    
-    for (Robot r: robots) {
-      if (r.getIsDead()) continue;
+
+    for (Robot r : robots) {
+      if (r.getIsDead())
+        continue;
       if (current.inRangeOf(r)) {
         double v = current.getVelocity();
         current.setVelocity(-v);
@@ -102,10 +108,14 @@ public class Field {
   // Interaction handling
   public void applyInteraction(Robot robot) {
     Item i = items.get(robot.position.getAngle());
-    
-    if (i == null) return;
-    
+
+    if (i == null)
+      return;
+
     i.interact(robot);
+
+    if (!i.exists())
+      items.values().remove(i);
   }
 
   // Adding item to the field
@@ -146,7 +156,7 @@ public class Field {
     for (Robot r : robots)
       r.getDistance();
 
-    //Robot winner = new Robot("Foo", Color.black);
+    // Robot winner = new Robot("Foo", Color.black);
 
     return null;
   }
@@ -156,8 +166,10 @@ public class Field {
     for (Item item : items.values()) {
       if (item instanceof Oil) {
         Oil oil = (Oil) item;
-        if (oil.getExpiration() >= 4) {
-          items.remove(item);
+        if (!oil.exists()) {
+          items.values().remove(item);
+        } else {
+          oil.expire();
         }
       }
     }
@@ -166,7 +178,7 @@ public class Field {
   public void newWorker(Worker w) {
     workers.add(w);
   }
-  
+
   public ArrayList<Robot> getRobots() {
     return robots;
   }
@@ -174,7 +186,7 @@ public class Field {
   public ArrayList<Worker> getWorkers() {
     return workers;
   }
-  
+
   public Collection<Item> getItems() {
     return items.values();
   }

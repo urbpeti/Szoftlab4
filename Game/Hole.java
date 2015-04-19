@@ -10,7 +10,7 @@ public class Hole extends Item {
   public void interact(Robot robot) {
     robot.setIsDead(true);
   }
-  
+
   public String toString() {
     return "Tacky " + position;
   }
@@ -19,4 +19,10 @@ public class Hole extends Item {
   public void interact(Worker worker) {
     worker.setIsDead(true);
   }
+
+  @Override
+  public boolean exists() {
+    return true;
+  }
+
 }

@@ -36,7 +36,7 @@ public class Tester {
     f = new Field();
     g = new Game(f);
 
-    BufferedReader br = new BufferedReader(new FileReader("tests/wc.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("tests/oe.txt"));
     try {
       String line = br.readLine();
 
@@ -51,6 +51,7 @@ public class Tester {
         else if (cmd.equals("Decelerate"))   decelerate(as);
         else if (cmd.equals("Accelerate"))   accelerate(as);
         else if (cmd.equals("Put"))          put(as);
+        else if (cmd.equals("Robot_Speed"))  setRobotSpeed(as);
         
         else if (cmd.equals("List_Robots"))  listRobots();
         else if (cmd.equals("List_Workers")) listWorkers();
@@ -119,4 +120,19 @@ public class Tester {
     
     f.newRobot(new Robot(n, Color.BLACK, p, v));
   }
+  
+  private static void setRobotSpeed(String[] as) {
+    String name = as[1];
+    Double velocity = Double.parseDouble(as[2]);
+    Robot robot = null;
+    for(Robot r: f.getRobots()){
+      if(r.getName().equals(name)) robot = r;
+    
+      if(robot == null) return;
+    
+      robot.setVelocity(velocity);
+    }
+  }
+
 }
+

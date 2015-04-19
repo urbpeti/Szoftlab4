@@ -10,20 +10,23 @@ public class Robot extends Creature {
 
   // Constructor
   public Robot(String name, Color color, Angle pos, double v) {
-    this.name     = name;
-    this.color    = color;
+    this.name = name;
+    this.color = color;
     this.position = pos;
     this.velocity = v;
-    this.delta    = 0;
+    this.delta = 0;
   }
-  
-  //Moving the Robot
+
+  // Moving the Robot
   public void jump() {
-    if (getIsDead()) return;
-    
-    if (getOnOil()) setOnOil(false);
-    else velocity += delta;
-    
+    if (getIsDead())
+      return;
+
+    if (getOnOil())
+      setOnOil(false);
+    else
+      velocity += delta;
+
     delta = 0;
     distance += Math.abs(velocity);
     position.addAngle(velocity);
@@ -69,15 +72,15 @@ public class Robot extends Creature {
   public void setOnOil(boolean onOil) {
     this.onOil = onOil;
   }
-  
+
   public String getName() {
     return name;
   }
-  
+
   public String toString() {
     String s = getIsDead() ? "Dead" : "Alive";
     String o = getOnOil() ? "Oily" : "Not Oily";
     return name + ", Position: " + position + ", Velocity: " + velocity +
-        /*", Delta: " + delta + */", " + o + ", " + s ;
+    /* ", Delta: " + delta + */", " + o + ", " + s;
   }
 }

@@ -50,10 +50,10 @@ public abstract class Creature {
   public void setIsDead(boolean isDead) {
     this.isDead = isDead;
   }
-  
+
   public boolean inRangeOf(Creature c) {
     double dist = getPosition().distance(c.getPosition());
-    
+
     return dist < 0.5;
   }
 }

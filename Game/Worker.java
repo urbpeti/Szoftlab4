@@ -24,16 +24,15 @@ public class Worker extends Creature {
     Item i = getClosestItem();
     
     if (i == null) return;
+ 
     
-    // itt valahogy meg kell hatarozni az iranyat a kisrobotnak
-    // hogy merre menjen a legkozelebbi cucchoz
     double distance = i.position.getAngle() - position.getAngle();
     while(distance < 0)
       distance += 360;
     if(distance > 180)
-      velocity = -5;
+      velocity = -1;
     else
-      velocity = 5;    
+      velocity = 1;    
   }
   
   private Item getClosestItem() {

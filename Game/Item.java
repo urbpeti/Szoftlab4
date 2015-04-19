@@ -13,4 +13,6 @@ public abstract class Item {
   public abstract void interact(Robot robot);
   
   public abstract void interact(Worker worker);
+  
+  public abstract boolean exists();
 }

@@ -25,15 +25,14 @@ public class Tacky extends Item {
   }
 
   public boolean exists() {
-    return false;
+    return count > 0;
   }
-  
+
   public String toString() {
     return "Tacky " + position + " " + count;
   }
 
   @Override
   public void interact(Worker worker) {
-    System.out.println("clean tacky");
   }
 }

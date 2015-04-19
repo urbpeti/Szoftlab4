@@ -48,7 +48,7 @@ public class Game implements Observer {
     // For every tick a step will occur
     step();
   }
-  
+
   public Field getField() {
     return field;
   }
