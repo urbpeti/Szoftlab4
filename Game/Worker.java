@@ -1,8 +1,11 @@
 package Game;
 
+import java.awt.peer.SystemTrayPeer;
+
 public class Worker extends Creature {
   private int cleaningTime; 
   private boolean cleaning;
+  private Item cleaningItem;
   private Field field;
 
   public Worker(Angle p, double v, Field f) {
@@ -19,6 +22,8 @@ public class Worker extends Creature {
   
   private void go() {
     Item i = getClosestItem();
+    
+    if (i == null) return;
     
     // itt valahogy meg kell hatarozni az iranyat a kisrobotnak
     // hogy merre menjen a legkozelebbi cucchoz
@@ -46,15 +51,30 @@ public class Worker extends Creature {
 
   // Moving the Robot
   public void jump() {
+    if (getIsDead()) return;
+    
     if (cleaning) {
-      // le kell kezelni amikor vegzett a takaritassal
       cleaningTime++;
-      return;
+      
+      if (cleaningTime == 2) { // ha  vegzett
+        field.removeItem(cleaningItem);
+        
+        cleaningTime = 0;
+        cleaning = false;
+        cleaningItem = null;
+        go();
+      }
+      else return;
     }
     
-    if (onItem()) { // ha egy itemen all elkezd takaritani
+    Item found = onItem();
+    if (found != null) {
+      if (getIsDead()) return;
+      
       cleaning = true;
-      cleaningTime = 0;
+      cleaningItem = found; 
+      cleaningTime = 1;
+      return;
     }
     
     velocity += delta;
@@ -62,9 +82,21 @@ public class Worker extends Creature {
     position.addAngle(velocity);
   }
 
-  private boolean onItem() { // epp egy itemen all-e
+  private Item onItem() {
+    double current = getPosition().getAngle();
     
-    return false;
+    Item item = null;
+    for (Item i: field.getItems())
+      if (i.position.getAngle() == current) { // ide rangeof
+        item = i;
+        break;
+      }
+    
+    if (item == null) return null;
+    
+    item.interact(this);
+    
+    return item;
   }
 
   public int getCleaningTime() {

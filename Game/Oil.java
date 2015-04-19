@@ -29,4 +29,9 @@ public class Oil extends Item {
   public String toString() {
     return "Oil " + position + " " + expiration;
   }
+
+  @Override
+  public void interact(Worker worker) {
+    
+  }
 }

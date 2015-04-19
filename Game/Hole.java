@@ -14,4 +14,9 @@ public class Hole extends Item {
   public String toString() {
     return "Tacky " + position;
   }
+
+  @Override
+  public void interact(Worker worker) {
+    worker.setIsDead(true);
+  }
 }

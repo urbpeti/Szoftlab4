@@ -31,4 +31,9 @@ public class Tacky extends Item {
   public String toString() {
     return "Tacky " + position + " " + count;
   }
+
+  @Override
+  public void interact(Worker worker) {
+    System.out.println("clean tacky");
+  }
 }

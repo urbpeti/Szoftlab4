@@ -115,7 +115,7 @@ public class Field {
 
   // Removing item from the field
   public void removeItem(Item item) {
-    items.remove(item);
+    items.remove(item.position.getAngle());
   }
 
   // Getting which items to place from Robots
