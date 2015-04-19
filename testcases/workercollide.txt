@@ -1,0 +1,16 @@
+Item Oil 35 0
+Item Oil 37 0
+Worker 34 1
+Step
+List_Workers
+Step
+List_Workers
+Step
+List_Workers
+Step
+List_Workers
+Step
+List_Workers
+Step
+List_Workers
+List_Items

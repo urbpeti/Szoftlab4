@@ -36,7 +36,7 @@ public class Tester {
     f = new Field();
     g = new Game(f);
 
-    BufferedReader br = new BufferedReader(new FileReader("tests/oe.txt"));
+    BufferedReader br = new BufferedReader(new FileReader("src/testcases/workercollide.txt"));
     try {
       String line = br.readLine();
 

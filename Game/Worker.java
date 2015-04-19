@@ -1,7 +1,5 @@
 package Game;
 
-import java.awt.peer.SystemTrayPeer;
-
 public class Worker extends Creature {
   private int cleaningTime; 
   private boolean cleaning;
@@ -15,8 +13,6 @@ public class Worker extends Creature {
     cleaningTime = 0;
     field = f;
     
-    // elinditja a legkozelebbi item fele
-    // ezt majd ujra meg kell hivni ha vegzett egy itemmel
     go();
   }
   
