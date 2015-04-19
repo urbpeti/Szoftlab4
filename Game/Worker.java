@@ -27,6 +27,14 @@ public class Worker extends Creature {
     
     // itt valahogy meg kell hatarozni az iranyat a kisrobotnak
     // hogy merre menjen a legkozelebbi cucchoz
+    double distance = i.position.getAngle() - position.getAngle();
+    while(distance < 0)
+      distance += 360;
+    if(distance > 180)
+      delta = -10;
+    else
+      delta = 10;
+    
     double a = getPosition().getAngle();
     double b = i.position.getAngle();
     double s = Math.signum(Math.min(Math.abs((a - b)), 360 - Math.abs((a - b))));
