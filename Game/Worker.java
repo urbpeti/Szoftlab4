@@ -31,15 +31,9 @@ public class Worker extends Creature {
     while(distance < 0)
       distance += 360;
     if(distance > 180)
-      delta = -10;
+      velocity = -5;
     else
-      delta = 10;
-    
-    double a = getPosition().getAngle();
-    double b = i.position.getAngle();
-    double s = Math.signum(Math.min(Math.abs((a - b)), 360 - Math.abs((a - b))));
-    
-    velocity *= s;
+      velocity = 5;    
   }
   
   private Item getClosestItem() {
@@ -85,8 +79,6 @@ public class Worker extends Creature {
       return;
     }
     
-    velocity += delta;
-    delta = 0;
     position.addAngle(velocity);
   }
 
