@@ -1,0 +1,1 @@
+R1, Position: 65.0, Velocity: 30.0, Not Oily, Alive

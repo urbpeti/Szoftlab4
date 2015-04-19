@@ -1,3 +1,4 @@
+Robot worker collide
 Robot R1 35 -3
 Worker 33 -1
 Item Tacky 32

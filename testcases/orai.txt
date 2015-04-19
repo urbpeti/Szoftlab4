@@ -1,0 +1,11 @@
+Orai
+Robot R1 35 2
+Worker 38 -1
+Item Tacky 37
+List_Items
+List_Workers
+List_Robots
+Step
+List_Items
+List_Workers
+List_Robots

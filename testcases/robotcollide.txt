@@ -1,3 +1,4 @@
+Robot collides
 Robot R1 35 -3
 Robot R2 31 1
 Step

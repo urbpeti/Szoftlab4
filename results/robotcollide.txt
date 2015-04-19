@@ -1,0 +1,2 @@
+R1, Position: 32.0, Velocity: -1.0, Not Oily, Alive
+R2, Position: 32.0, Velocity: 1.0, Not Oily, Dead

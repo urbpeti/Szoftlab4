@@ -1,3 +1,4 @@
+Robot picks up oil
 Robot R1 35 -3
 Item Oil 32
 Step

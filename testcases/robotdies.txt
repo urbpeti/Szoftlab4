@@ -1,3 +1,4 @@
+Robot dies
 Robot R1 35 -3
 Item Hole 32
 Step
