@@ -2,43 +2,54 @@ package Tests;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 import Game.*;
 
 public class Tester {
   private static Field f;
   private static Game g;
+  private static Scanner sc = null;
+  private static PrintWriter out = null;
   
   public static void listRobots() {
-    System.out.println("Robots:");
     for (Robot r: f.getRobots()) {
-      System.out.println(r);
+      out.println(r);
     }
   }
   
   public static void listWorkers() {
-    System.out.println("Workers:");
     for (Worker w: f.getWorkers()) {
-      System.out.println(w);
+      out.println(w);
     }
   }
   
   public static void listItems() {
-    System.out.println("Items:");
     for (Item i: f.getItems()) {
-      System.out.println(i);
+      out.println(i);
     }
   }
   
-  public static void main(String[] args) throws IOException {
+  public static void runTest (String name, String res) throws IOException {
     f = new Field();
     g = new Game(f);
+    out = new PrintWriter(new File("src/results/" + res));
+    String title = null;
 
+<<<<<<< HEAD
     BufferedReader br = new BufferedReader(new FileReader("tests/orai.txt"));
+=======
+    BufferedReader br = new BufferedReader(new FileReader(name));
+>>>>>>> a9940e09e325ce766e35e67e9e3db31aefd010b9
     try {
       String line = br.readLine();
+      title = line;
+      line = br.readLine();
 
       while (line != null) {
         String[] as = line.split(" ");
@@ -62,6 +73,41 @@ public class Tester {
     } finally {
       br.close();
     }
+    
+    out.close();
+    
+    boolean passed = resultMatches(new File("src/results/" + res), new File("src/expected/" + res));
+    System.out.println(title + ": " + (passed ? "Passed!" : "Failed!" ));
+  }
+  
+  public static void main(String[] args) throws IOException {
+    File testDir = new File("src/testcases/");
+    File[] testCases = testDir.listFiles();
+    for(File f : testCases){
+      String name = f.getCanonicalPath();
+      String res  = f.getName();
+      runTest(name, res);
+    }
+  }
+  
+  private static boolean resultMatches(File result, File expected) throws FileNotFoundException {
+    Scanner resultScanner = new Scanner(result);
+    Scanner expectedScanner = new Scanner(expected);
+    String resultLine;
+    String expectedLine;
+    while(resultScanner.hasNext()){
+      resultLine = resultScanner.nextLine();
+      expectedLine = expectedScanner.nextLine();
+      if(!resultLine.equals(expectedLine)){
+        resultScanner.close();
+        expectedScanner.close();
+        return false;
+      }
+    }
+    if (expectedScanner.hasNext()) return false;
+    resultScanner.close();
+    expectedScanner.close();
+    return true;
   }
 
   private static void put(String[] args) {

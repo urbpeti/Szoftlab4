@@ -1,0 +1,6 @@
+Tacky 37.0 4
+Worker Alive 38.0 0 -1.0
+R1, Position: 35.0, Velocity: 2.0, Not Oily, Alive
+Oil 37.0 0
+Worker Dead 37.0 0 -1.0
+R1, Position: 37.0, Velocity: 2.0, Oily, Alive

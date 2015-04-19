@@ -1,0 +1,2 @@
+R1, Position: 37.0, Velocity: 2.0, Not Oily, Alive
+Oil 37.0 0

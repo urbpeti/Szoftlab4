@@ -1,0 +1,12 @@
+Use up a tacky
+Robot R1 34 1
+Robot R2 33 1
+Robot R3 32 1
+Robot R4 31 1
+Item Tacky 35
+List_Items
+Step
+Step
+Step
+Step
+List_Items

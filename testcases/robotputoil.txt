@@ -1,0 +1,6 @@
+Robot puts down oil
+Robot R1 35 2
+Put R1 Oil
+Step
+List_Robots
+List_Items
