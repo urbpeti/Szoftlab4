@@ -41,11 +41,7 @@ public class Tester {
     out = new PrintWriter(new File("src/results/" + res));
     String title = null;
 
-<<<<<<< HEAD
-    BufferedReader br = new BufferedReader(new FileReader("tests/orai.txt"));
-=======
     BufferedReader br = new BufferedReader(new FileReader(name));
->>>>>>> a9940e09e325ce766e35e67e9e3db31aefd010b9
     try {
       String line = br.readLine();
       title = line;
