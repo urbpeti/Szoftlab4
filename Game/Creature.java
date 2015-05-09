@@ -1,4 +1,4 @@
-package szoftlab4;
+package Game;
 
 public abstract class Creature {
   protected Angle position;

@@ -1,2 +1,0 @@
-R1, Position: 32.0, Velocity: -3.0, Not Oily, Dead
-Tacky 32.0

@@ -1,4 +1,5 @@
-package szoftlab4;
+package Game;
+
 
 public class Oil extends Item {
   private int expiration;

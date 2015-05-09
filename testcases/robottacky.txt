@@ -1,6 +1,0 @@
-Robot picks up tacky
-Robot R1 36 -4
-Item Tacky 32
-Step
-List_Robots
-List_Items

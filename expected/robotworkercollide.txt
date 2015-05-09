@@ -1,3 +1,0 @@
-Worker Dead 32.0 0 -1.0
-Oil 32.0 0
-R1, Position: 32.0, Velocity: -3.0, Oily, Alive

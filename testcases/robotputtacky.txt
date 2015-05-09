@@ -1,6 +1,0 @@
-Robot puts down tacky
-Robot R1 35 2
-Put R1 Tacky
-Step
-List_Robots
-List_Items

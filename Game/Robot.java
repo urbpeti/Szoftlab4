@@ -1,4 +1,4 @@
-package szoftlab4;
+package Game;
 
 import java.awt.Color;
 

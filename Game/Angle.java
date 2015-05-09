@@ -1,4 +1,4 @@
-package szoftlab4;
+package Game;
 
 //A Robot's actual place is determined with Angles
 public class Angle {
