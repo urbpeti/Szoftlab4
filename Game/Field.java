@@ -1,32 +1,41 @@
-package Game;
+package szoftlab4;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Field {
+public class Field implements Observer {
   private HashMap<Double, Item> items;
   private ArrayList<Robot> robots;
   private ArrayList<Worker> workers;
+  private Control control;
 
-  public Field() {
+  public Field(Control c) {
     // Initializing the containers
     items = new HashMap<Double, Item>();
     robots = new ArrayList<Robot>();
     workers = new ArrayList<Worker>();
+    
+    //Initializing control
+    control = c;
 
     // Placing holes randomly on the field
     placeHoles();
   }
 
   // Creating new Robot
-  public void newRobot(Robot r) {
+  public void newRobot(String name, Color cl) {
+	Robot r = new Robot(name,cl,new Angle(robots.size()*90),1);
     robots.add(r);
+    //Add to control
+    control.creatureAdded(r);
   }
 
   // Stepping the game
   public void step() {
-
+	  clearOil();
+	  placeItems();
     stepWorkers();
 
     // Jumping, and interactions
@@ -40,6 +49,7 @@ public class Field {
     for (Robot r : robots) {
       applyInteraction(r);
     }
+    
   }
 
   public void checkCollision(Robot current) {
@@ -121,11 +131,15 @@ public class Field {
   // Adding item to the field
   public void addItem(Item item) {
     items.put(item.position.getAngle(), item);
+    //Add to control
+    control.itemAdded(item);
   }
 
   // Removing item from the field
   public void removeItem(Item item) {
     items.remove(item.position.getAngle());
+    //Remove from control
+    control.itemRemoved(item);
   }
 
   // Getting which items to place from Robots
@@ -189,5 +203,11 @@ public class Field {
 
   public Collection<Item> getItems() {
     return items.values();
+  }
+  
+
+  @Override
+  public void update() {
+		step();
   }
 }

@@ -1,4 +1,4 @@
-package Game;
+package szoftlab4;
 
 public class Tacky extends Item {
   protected int count;

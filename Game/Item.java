@@ -1,4 +1,4 @@
-package Game;
+package szoftlab4;
 
 //Abstract ParentClass
 public abstract class Item {

@@ -1,4 +1,4 @@
-package Game;
+package szoftlab4;
 
 import javax.swing.Timer;
 
@@ -7,18 +7,20 @@ import java.awt.event.ActionListener;
 
 public class GameTimer extends Observable {
   private int length;
-  private Timer timer;
+//  private Timer timer;
 
   // Constructor, logging
   public GameTimer() {
-    timer = new Timer(1000, new ActionListener() {
-      public void actionPerformed(ActionEvent e) { tick(); }
-    });
+ //   timer = new Timer(1000, new ActionListener() {
+ //    public void actionPerformed(ActionEvent e) { tick(); }
+  //  });
+	  length = 30;
   }
 
   // One step, or tick for the Timer
-  private void tick() {
+  public void tick() {
     System.out.println("TICKED");
+    length--;
     notifyObservers();
   }
 
@@ -28,12 +30,12 @@ public class GameTimer extends Observable {
   }
   
   // Starting the Timer
-  public void start() {
-    timer.start();
-  }
+ // public void start() {
+  //  timer.start();
+  //}
 
   // Ending the Timer
-  public void end() {
-    timer.stop();
-  }
+  //public void end() {
+  //  timer.stop();
+  //}
 }
