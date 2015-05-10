@@ -35,13 +35,13 @@ public class Robot extends Creature {
   // Accelerating
   public void accelerate() {
     if (delta < 10)
-      delta += 10;
+      delta += 1;
   }
 
   // Decelerating
   public void decelerate() {
     if (delta > -10)
-      delta -= 10;
+      delta -= 1;
   }
 
   // Halves the robot's speed
@@ -82,5 +82,15 @@ public class Robot extends Creature {
     String o = getOnOil() ? "Oily" : "Not Oily";
     return name + ", Position: " + position + ", Velocity: " + velocity +
     /* ", Delta: " + delta + */", " + o + ", " + s;
+  }
+  
+  public boolean inRangeOf(Item i) {
+	    double dist = getPosition().distance(i.position);
+
+	    return dist < 3.5;
+  }
+  
+  public Color getColor(){
+	  return color;
   }
 }

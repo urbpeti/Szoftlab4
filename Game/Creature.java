@@ -49,6 +49,7 @@ public abstract class Creature {
   // Sets the robot's isDead variable
   public void setIsDead(boolean isDead) {
     this.isDead = isDead;
+    System.out.println("Meghaltam");
   }
 
   public boolean inRangeOf(Creature c) {

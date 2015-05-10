@@ -1,18 +1,130 @@
 package Game;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class ResultsView extends JPanel {
-  private Main parent;
+	private Main parent;
+	private int colornumber;
+	private Image map;
+	
+	public ResultsView(Main m){
+		parent = m;
+		setBackground(Color.white);
+		setLayout(null);
+		
+		
+		//Playericons
+				/*try {
+					map = ImageIO.read(new File("Images\\player_green.png"));
+					map = map.getScaledInstance(80, 80, 1);
+					JLabel playericonlabel_green = new JLabel(new ImageIcon(map));
+					add(playericonlabel_green);
+					playericonlabel_green.setBounds(220, 225, 100, 100);
+					
+					map = ImageIO.read(new File("Images\\player_red.png"));
+					map = map.getScaledInstance(80, 80, 1);
+					JLabel playericonlabel_red = new JLabel(new ImageIcon(map));
+					add(playericonlabel_red);
+					playericonlabel_red.setBounds(220, 325, 100, 100);
+					
+					map = ImageIO.read(new File("Images\\player_cyan.png"));
+					map = map.getScaledInstance(80, 80, 1);
+					JLabel playericonlabel_cyan = new JLabel(new ImageIcon(map));
+					add(playericonlabel_cyan);
+					playericonlabel_cyan.setBounds(220, 425, 100, 100);
+					
+				} catch (IOException e1) {
+					parent.FailureinGui("Playericon image load failure");
+					e1.printStackTrace();
+				}*/		
+				
+		
+	}
+	
+	public void present(ArrayList<Robot> l){
+		l.sort(new Comparator<Robot>() {
 
-  public ResultsView(Main m) {
-    parent = m;
-  }
+			public int compare(Robot o1, Robot o2) {
+				return (int)(o2.distance-o1.distance);
+			}
+			
+		});
+		
+		
+		//Names
+		
+		Font font = new Font("Verdana",Font.ITALIC, 20);
+		for (int i=0; i<l.size(); i++){
+			JLabel j = new JLabel(l.get(i).getName());
+			j.setFont(font);
+			add(j);
+			j.setBounds(350, 100 * (i+1) +150 ,200,50);
+			JLabel k = new JLabel(Double.toString(l.get(i).distance));
+			add(k);
+			k.setBounds(550, 100 * (i+1) +150 ,200,50);
+			
+			try{
+				if (l.get(i).getColor().equals(Color.green)) draw_green();
+				else if (l.get(i).getColor().equals(Color.red)) draw_red();
+				else draw_cyan();
+			}catch(IOException e1){
+				parent.FailureinGui("Playericon image load failure");
+				e1.printStackTrace();
+			}
+		}
+		
+		//Map image
+		try {
+			map = ImageIO.read(new File("Images\\map.png"));
+			map = map.getScaledInstance(800, 800, 1);
+			JLabel Maplabel = new JLabel(new ImageIcon(map));
+			add(Maplabel);
+			Maplabel.setBounds(0, 0, 800, 800);
+			setComponentZOrder(Maplabel, 3);
+		} catch (IOException e1) {
+			parent.FailureinGui("Map image load failure");
+			e1.printStackTrace();
+		}
+		
+		setVisible(true);
+	}
+	
+	private void draw_green() throws IOException{
+		map = ImageIO.read(new File("Images\\player_green.png"));
+		map = map.getScaledInstance(80, 80, 1);
+		JLabel playericonlabel_green = new JLabel(new ImageIcon(map));
+		add(playericonlabel_green);
+		playericonlabel_green.setBounds(220, 225, 100, 100);
+	}
+	
+	private void draw_red() throws IOException{
+		map = ImageIO.read(new File("Images\\player_red.png"));
+		map = map.getScaledInstance(80, 80, 1);
+		JLabel playericonlabel_red = new JLabel(new ImageIcon(map));
+		add(playericonlabel_red);
+		playericonlabel_red.setBounds(220, 325, 100, 100);
+	}
 
-  public void present(List l) {
-
-  }
-
+	private void draw_cyan() throws IOException{
+		map = ImageIO.read(new File("Images\\player_cyan.png"));
+		map = map.getScaledInstance(80, 80, 1);
+		JLabel playericonlabel_cyan = new JLabel(new ImageIcon(map));
+		add(playericonlabel_cyan);
+		playericonlabel_cyan.setBounds(220, 425, 100, 100);
+	}
+		
 }

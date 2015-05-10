@@ -11,45 +11,50 @@ public class Field implements Observer {
   private ArrayList<Worker> workers;
   private Control control;
 
-  public Field(Control c) {
+  public Field() {
     // Initializing the containers
     items = new HashMap<Double, Item>();
     robots = new ArrayList<Robot>();
     workers = new ArrayList<Worker>();
 
-    // Initializing control
-    control = c;
-
     // Placing holes randomly on the field
-    placeHoles();
+    //placeHoles();
+  }
+  
+  public void setcontrol (Control c){
+	//Initializing control
+	    control = c;
   }
 
   // Creating new Robot
   public void newRobot(String name, Color cl) {
-    Robot r = new Robot(name, cl, new Angle(robots.size() * 90), 1);
+	Robot r = new Robot(name,cl,new Angle(robots.size()*90),1);
     robots.add(r);
-    // Add to control
+    //Add to control
     control.creatureAdded(r);
   }
 
   // Stepping the game
   public void step() {
-    clearOil();
-    placeItems();
+	  clearOil();
+	  placeItems();
     stepWorkers();
 
     // Jumping, and interactions
 
     for (Robot r : robots) {
-      r.jump();
+      if(!r.getIsDead()){
+    	r.jump();
 
       checkCollision(r);
+      }
     }
 
     for (Robot r : robots) {
-      applyInteraction(r);
+      if (!r.getIsDead())
+    	applyInteraction(r);
     }
-
+    
   }
 
   public void checkCollision(Robot current) {
@@ -60,7 +65,7 @@ public class Field implements Observer {
         continue;
 
       w.setIsDead(true);
-      addItem(new Oil(w.getPosition()));
+      addItem(new Oil(new Angle(w.getPosition().getAngle())));
     }
 
     for (Robot r : robots) {
@@ -117,28 +122,36 @@ public class Field implements Observer {
 
   // Interaction handling
   public void applyInteraction(Robot robot) {
-    Item i = items.get(robot.position.getAngle());
+	 Item temp = null;
+	for (Item i : items.values()) {
+		if (robot.inRangeOf(i) && i.exists()){
+			temp = i;
+		}
+	}
+    //Item i = items.get(robot.position.getAngle());
 
-    if (i == null)
+    if (temp == null)
       return;
+    
+    temp.interact(robot);
 
-    i.interact(robot);
-
-    if (!i.exists())
-      items.values().remove(i);
+    if (!temp.exists()){
+      items.values().remove(temp);
+      control.itemRemoved(temp);
+    }
   }
 
   // Adding item to the field
   public void addItem(Item item) {
     items.put(item.position.getAngle(), item);
-    // Add to control
+    //Add to control
     control.itemAdded(item);
   }
 
   // Removing item from the field
   public void removeItem(Item item) {
     items.remove(item.position.getAngle());
-    // Remove from control
+    //Remove from control
     control.itemRemoved(item);
   }
 
@@ -153,7 +166,7 @@ public class Field implements Observer {
 
   // Checking if all the Robots are dead
   public boolean isAllDead() {
-    boolean ad = false;
+    boolean ad = true;
     for (Robot r : robots)
       ad &= r.getIsDead();
 
@@ -162,7 +175,11 @@ public class Field implements Observer {
 
   // Placing holes on the field
   public void placeHoles() {
-
+	  addItem(new Hole(new Angle(120)));
+	  addItem(new Hole(new Angle(60)));
+	  addItem(new Hole(new Angle(50)));
+	  addItem(new Hole(new Angle(30)));
+	  //newWorker(new Worker(new Angle(30),1,this));
   }
 
   // Deciding the winning Robot
@@ -177,20 +194,28 @@ public class Field implements Observer {
 
   // Check witch Oil is expired
   public void clearOil() {
+	  ArrayList<Item> temp= new ArrayList<Item>();
     for (Item item : items.values()) {
       if (item instanceof Oil) {
         Oil oil = (Oil) item;
         if (!oil.exists()) {
-          items.values().remove(item);
+        	System.out.println("Én ilyen olaj voltam");
+          temp.add(item);
         } else {
           oil.expire();
         }
       }
     }
+    for (Item item : temp) {
+    	items.values().remove(item);
+	    control.itemRemoved(item);
+	}
+    temp.clear();
   }
 
   public void newWorker(Worker w) {
     workers.add(w);
+    control.creatureAdded(w);
   }
 
   public ArrayList<Robot> getRobots() {
@@ -204,9 +229,8 @@ public class Field implements Observer {
   public Collection<Item> getItems() {
     return items.values();
   }
-
-  @Override
+  
   public void update() {
-    step();
+		step();
   }
 }

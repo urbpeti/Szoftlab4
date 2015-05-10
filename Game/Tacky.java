@@ -25,6 +25,7 @@ public class Tacky extends Item {
   }
 
   public boolean exists() {
+	  if (count <=0) System.out.println("Ragacs már nem élek");
     return count > 0;
   }
 

@@ -16,7 +16,7 @@ public class Game implements Observer {
   public void startGame() {
     timer.register(this);
 
-    // timer.start();
+    //timer.start();
   }
 
   public void step() {
@@ -35,7 +35,7 @@ public class Game implements Observer {
   // Ending the game
   public void endGame() {
     // Stopping the timer
-    // timer.end();
+    //timer.end();
 
     // Getting the winner
 
