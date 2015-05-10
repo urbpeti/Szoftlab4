@@ -14,7 +14,7 @@ public class GameTimer extends Observable {
  //   timer = new Timer(1000, new ActionListener() {
  //    public void actionPerformed(ActionEvent e) { tick(); }
   //  });
-	  length = 30;
+	  length = 300;
   }
 
   // One step, or tick for the Timer

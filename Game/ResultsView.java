@@ -78,9 +78,9 @@ public class ResultsView extends JPanel {
 			k.setBounds(550, 100 * (i+1) +150 ,200,50);
 			
 			try{
-				if (l.get(i).getColor().equals(Color.green)) draw_green();
-				else if (l.get(i).getColor().equals(Color.red)) draw_red();
-				else draw_cyan();
+				if (l.get(i).getColor().equals(Color.green)) draw_green(i);
+				else if (l.get(i).getColor().equals(Color.red)) draw_red(i);
+				else draw_cyan(i);
 			}catch(IOException e1){
 				parent.FailureinGui("Playericon image load failure");
 				e1.printStackTrace();
@@ -103,28 +103,28 @@ public class ResultsView extends JPanel {
 		setVisible(true);
 	}
 	
-	private void draw_green() throws IOException{
+	private void draw_green(int position) throws IOException{
 		map = ImageIO.read(new File("Images\\player_green.png"));
 		map = map.getScaledInstance(80, 80, 1);
 		JLabel playericonlabel_green = new JLabel(new ImageIcon(map));
 		add(playericonlabel_green);
-		playericonlabel_green.setBounds(220, 225, 100, 100);
+		playericonlabel_green.setBounds(220, 225 + position*100, 100, 100);
 	}
 	
-	private void draw_red() throws IOException{
+	private void draw_red(int position) throws IOException{
 		map = ImageIO.read(new File("Images\\player_red.png"));
 		map = map.getScaledInstance(80, 80, 1);
 		JLabel playericonlabel_red = new JLabel(new ImageIcon(map));
 		add(playericonlabel_red);
-		playericonlabel_red.setBounds(220, 325, 100, 100);
+		playericonlabel_red.setBounds(220, 225 + position*100, 100, 100);
 	}
 
-	private void draw_cyan() throws IOException{
+	private void draw_cyan(int position) throws IOException{
 		map = ImageIO.read(new File("Images\\player_cyan.png"));
 		map = map.getScaledInstance(80, 80, 1);
 		JLabel playericonlabel_cyan = new JLabel(new ImageIcon(map));
 		add(playericonlabel_cyan);
-		playericonlabel_cyan.setBounds(220, 425, 100, 100);
+		playericonlabel_cyan.setBounds(220, 225 + position*100, 100, 100);
 	}
 		
 }
