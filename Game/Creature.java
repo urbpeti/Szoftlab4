@@ -55,6 +55,6 @@ public abstract class Creature {
   public boolean inRangeOf(Creature c) {
     double dist = getPosition().distance(c.getPosition());
 
-    return dist < 2;
+    return dist < 3;
   }
 }

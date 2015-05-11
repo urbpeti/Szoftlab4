@@ -71,4 +71,9 @@ public class GraphicItem extends JPanel implements Drawable {
 
     g2d.drawImage(image, at, null);
   }
+  
+  @Override
+  public boolean kindOf(Object o) {
+    return item.getClass().equals(o.getClass());
+  }
 }

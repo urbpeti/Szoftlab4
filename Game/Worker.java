@@ -13,7 +13,8 @@ public class Worker extends Creature {
     cleaningTime = 0;
     field = f;
     
-    go();
+    if (f != null)
+      go();
   }
   
   public void go() {

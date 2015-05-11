@@ -59,4 +59,13 @@ public class GraphicCreature implements Drawable {
   public static void setColorCount(int i) {
     colorcount = i;
   }
+  
+  public Creature getCreature() {
+    return creature;
+  }
+
+  @Override
+  public boolean kindOf(Object o) {
+    return creature.getClass().equals(o.getClass());
+  }
 }

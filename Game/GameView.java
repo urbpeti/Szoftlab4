@@ -101,10 +101,23 @@ public class GameView extends JPanel implements Control {
     parent.ShowResults(field.getRobots());
   }
 
-  public void drawAll() {
-    for (Drawable drawable : drawables) {
-      drawable.draw(this);
-    }
+  public void drawAll() {    
+    // Robots
+    Robot r = new Robot("", null, null, 0);
+    for (Drawable d : drawables)
+      if (d.kindOf(r)) d.draw(this);
+    
+    // Workers
+    Worker w = new Worker(null, 0, null);
+    for (Drawable d : drawables)
+      if (d.kindOf(w)) d.draw(this);
+    
+    // Items
+    Oil o = new Oil(null);
+    Tacky t = new Tacky(null);
+    Hole h = new Hole(null);
+    for (Drawable d : drawables)
+      if (d.kindOf(o) || d.kindOf(t) || d.kindOf(h)) d.draw(this);
   }
 
   public void itemAdded(Item i) {
