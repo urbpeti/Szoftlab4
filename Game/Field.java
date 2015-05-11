@@ -10,12 +10,14 @@ public class Field implements Observer {
   private ArrayList<Robot> robots;
   private ArrayList<Worker> workers;
   private Control control;
+  private int countdown;
 
   public Field() {
     // Initializing the containers
     items = new HashMap<Double, Item>();
     robots = new ArrayList<Robot>();
     workers = new ArrayList<Worker>();
+    countdown = 4;
 
     // Placing holes randomly on the field
     //placeHoles();
@@ -28,7 +30,7 @@ public class Field implements Observer {
 
   // Creating new Robot
   public void newRobot(String name, Color cl) {
-	Robot r = new Robot(name,cl,new Angle(robots.size()*90),1);
+	Robot r = new Robot(name,cl,new Angle(robots.size()*90),9);
     robots.add(r);
     //Add to control
     control.creatureAdded(r);
@@ -55,6 +57,10 @@ public class Field implements Observer {
     	applyInteraction(r);
     }
     
+    if (--countdown == 0){
+    	newWorker(new Worker(new Angle(0),5,this));
+    	countdown = 20;
+    }
   }
 
   public void checkCollision(Robot current) {
@@ -88,6 +94,7 @@ public class Field implements Observer {
 
   public void stepWorkers() {
     for (Worker worker : workers) {
+    	worker.go();
       worker.jump();
     }
 

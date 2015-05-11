@@ -16,7 +16,7 @@ public class Worker extends Creature {
     go();
   }
   
-  private void go() {
+  public void go() {
     Item i = getClosestItem();
     
     if (i == null) return;
@@ -65,9 +65,10 @@ public class Worker extends Creature {
     }
     
     Item found = onItem();
+    System.out.println("cleaning" + found);
+
     if (found != null) {
       if (getIsDead()) return;
-      
       cleaning = true;
       cleaningItem = found; 
       cleaningTime = 1;
@@ -78,17 +79,16 @@ public class Worker extends Creature {
   }
 
   private Item onItem() {
-    double current = getPosition().getAngle();
     
     Item item = null;
     for (Item i: field.getItems())
-      if (i.position.getAngle() == current) { // ide rangeof
+      if (inRangeOf(i)) { // ide rangeof
         item = i;
         break;
       }
     
     if (item == null) return null;
-    
+    System.out.println("WOrkervalami");
     item.interact(this);
     
     return item;
@@ -106,6 +106,12 @@ public class Worker extends Creature {
     String s = getIsDead() ? "Dead" : "Alive";
     return "Worker " + s + " " + position + " " + cleaningTime + " " + velocity;
   }
+  
+  public boolean inRangeOf(Item i) {
+	    double dist = getPosition().distance(i.position);
+
+	    return dist < 3.5;
+}
   
   public boolean isCleaning() {
     return cleaning;

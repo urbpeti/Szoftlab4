@@ -36,5 +36,6 @@ public class Oil extends Item {
 
   @Override
   public void interact(Worker worker) {
+	  
   }
 }

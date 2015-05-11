@@ -24,6 +24,7 @@ public class GameView extends JPanel implements Control {
 	private GameTimer gameTimer;
 	private Field field;
 	private JLabel timecounter;
+	private JLabel Maplabel;
 	private int seconds;
 	
 	public GameView(Main m, Field f){
@@ -55,7 +56,7 @@ public class GameView extends JPanel implements Control {
 		try {
 			Image map = ImageIO.read(new File("Images\\map.png"));
 			map = map.getScaledInstance(800, 800, 1);
-			JLabel Maplabel = new JLabel(new ImageIcon(map));
+			Maplabel = new JLabel(new ImageIcon(map));
 			add(Maplabel);
 			Maplabel.setBounds(0, 0, 800, 800);
 			setComponentZOrder(Maplabel, 0);

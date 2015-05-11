@@ -24,33 +24,7 @@ public class ResultsView extends JPanel {
 	public ResultsView(Main m){
 		parent = m;
 		setBackground(Color.white);
-		setLayout(null);
-		
-		
-		//Playericons
-				/*try {
-					map = ImageIO.read(new File("Images\\player_green.png"));
-					map = map.getScaledInstance(80, 80, 1);
-					JLabel playericonlabel_green = new JLabel(new ImageIcon(map));
-					add(playericonlabel_green);
-					playericonlabel_green.setBounds(220, 225, 100, 100);
-					
-					map = ImageIO.read(new File("Images\\player_red.png"));
-					map = map.getScaledInstance(80, 80, 1);
-					JLabel playericonlabel_red = new JLabel(new ImageIcon(map));
-					add(playericonlabel_red);
-					playericonlabel_red.setBounds(220, 325, 100, 100);
-					
-					map = ImageIO.read(new File("Images\\player_cyan.png"));
-					map = map.getScaledInstance(80, 80, 1);
-					JLabel playericonlabel_cyan = new JLabel(new ImageIcon(map));
-					add(playericonlabel_cyan);
-					playericonlabel_cyan.setBounds(220, 425, 100, 100);
-					
-				} catch (IOException e1) {
-					parent.FailureinGui("Playericon image load failure");
-					e1.printStackTrace();
-				}*/		
+		setLayout(null);	
 				
 		
 	}
