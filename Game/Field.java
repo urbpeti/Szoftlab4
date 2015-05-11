@@ -1,5 +1,9 @@
 package Game;
 
+import static Setup.GameSetUp.MAXHOLES;
+import static Setup.GameSetUp.MAXWORKERSPAWN;
+import static Setup.GameSetUp.MINWORKERSPAWN;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,10 +21,7 @@ public class Field implements Observer {
     items = new HashMap<Double, Item>();
     robots = new ArrayList<Robot>();
     workers = new ArrayList<Worker>();
-    countdown = 20;
-
-    // Placing holes randomly on the field
-    // placeHoles();
+    countdown = randWorkerTime();
   }
 
   public void setControl(Control c) {
@@ -30,7 +31,7 @@ public class Field implements Observer {
 
   // Creating new Robot
   public void newRobot(String name, Color cl) {
-    Robot r = new Robot(name, cl, new Angle(robots.size() * 90), 9);
+    Robot r = new Robot(name, cl, new Angle(robots.size() * 90), 10);
     robots.add(r);
     // Add to control
     control.creatureAdded(r);
@@ -59,9 +60,14 @@ public class Field implements Observer {
 
     if (--countdown == 0) {
       double rand = Math.random() * 360;
-      newWorker(new Worker(new Angle(rand), 5, this));
-      countdown = (int) (Math.random() * 11) + 5;
+      newWorker(new Worker(new Angle(rand), this));
+      countdown = randWorkerTime();
     }
+  }
+
+  private int randWorkerTime() {
+    return (int) (Math.random() * (MAXWORKERSPAWN - MINWORKERSPAWN))
+        + MINWORKERSPAWN;
   }
 
   public void checkCollision(Robot current) {
@@ -136,7 +142,6 @@ public class Field implements Observer {
         temp = i;
       }
     }
-    // Item i = items.get(robot.position.getAngle());
 
     if (temp == null)
       return;
@@ -184,21 +189,11 @@ public class Field implements Observer {
 
   // Placing holes on the field
   public void placeHoles() {
-    int db = (int) (Math.random() * 6) + 1;
+    int db = (int) (Math.random() * MAXHOLES) + 1;
     for (int i = 0; i < db; i++) {
       double position = Math.random() * 360;
       addItem(new Hole(new Angle(position)));
     }
-  }
-
-  // Deciding the winning Robot
-  public Robot winner() {
-    for (Robot r : robots)
-      r.getDistance();
-
-    // Robot winner = new Robot("Foo", Color.black);
-
-    return null;
   }
 
   // Check witch Oil is expired
@@ -208,7 +203,6 @@ public class Field implements Observer {
       if (item instanceof Oil) {
         Oil oil = (Oil) item;
         if (!oil.exists()) {
-          System.out.println("Én ilyen olaj voltam");
           temp.add(item);
         } else {
           oil.expire();

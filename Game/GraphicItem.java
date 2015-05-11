@@ -49,7 +49,7 @@ public class GraphicItem extends JPanel implements Drawable {
           (int) (370 + 280 * Math.sin(d)), 60, 60);
   }
 
-  public boolean isItsMe(Object o) {
+  public boolean isItMe(Object o) {
     if (item.equals(o))
       return true;
     return false;

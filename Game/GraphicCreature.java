@@ -50,7 +50,7 @@ public class GraphicCreature implements Drawable {
     }
   }
 
-  public boolean isItsMe(Object o) {
+  public boolean isItMe(Object o) {
     if (o.equals(creature))
       return true;
     return false;
@@ -59,7 +59,7 @@ public class GraphicCreature implements Drawable {
   public static void setColorCount(int i) {
     colorcount = i;
   }
-  
+
   public Creature getCreature() {
     return creature;
   }

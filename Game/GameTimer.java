@@ -1,11 +1,12 @@
 package Game;
 
+import static Setup.GameSetUp.*;
 
 public class GameTimer extends Observable {
   private int length;
 
   public GameTimer() {
-	  length = 300;
+    length = GAMELENGHT;
   }
 
   // One step, or tick for the Timer

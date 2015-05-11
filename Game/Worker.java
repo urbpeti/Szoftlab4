@@ -1,14 +1,15 @@
 package Game;
 
+import static Setup.GameSetUp.*;
+
 public class Worker extends Creature {
   private int cleaningTime; 
   private boolean cleaning;
   private Item cleaningItem;
   private Field field;
 
-  public Worker(Angle p, double v, Field f) {
+  public Worker(Angle p, Field f) {
     position = p;
-    velocity = v;
     cleaning = false;
     cleaningTime = 0;
     field = f;
@@ -27,9 +28,9 @@ public class Worker extends Creature {
     while(distance < 0)
       distance += 360;
     if(distance > 180)
-      velocity = -2;
+      velocity = -WORKERSPEED;
     else
-      velocity = 2;    
+      velocity = WORKERSPEED;    
   }
   
   private Item getClosestItem() {

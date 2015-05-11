@@ -1,5 +1,7 @@
 package Game;
 
+import static Setup.GameSetUp.*;
+
 public abstract class Creature {
   protected Angle position;
   protected double velocity;
@@ -49,12 +51,11 @@ public abstract class Creature {
   // Sets the robot's isDead variable
   public void setIsDead(boolean isDead) {
     this.isDead = isDead;
-    System.out.println("Meghaltam");
   }
 
   public boolean inRangeOf(Creature c) {
     double dist = getPosition().distance(c.getPosition());
 
-    return dist < 3;
+    return dist < ITEMSIZE;
   }
 }

@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import Setup.GameSetUp;
+import static Setup.GameSetUp.*;
+
 public class GameView extends JPanel implements Control {
   /**
    * 
@@ -36,12 +39,12 @@ public class GameView extends JPanel implements Control {
     field = new Field();
     seconds = 0;
     parent = m;
-    
+
     gameTimer = new GameTimer();
     gameTimer.register(field);
     setBackground(Color.white);
     setLayout(null);
-    timer = new Timer(1000, new ActionListener() {
+    timer = new Timer(TICKTIME, new ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
         removeAll();
@@ -65,9 +68,9 @@ public class GameView extends JPanel implements Control {
   private void init() {
     try {
       map = ImageIO.read(new File("Images\\map.png"));
-      map = map.getScaledInstance(800, 800, 1);
+      map = map.getScaledInstance(GameSetUp.WIDTH, GameSetUp.HEIGHT, 1);
       Maplabel = new JLabel(new ImageIcon(map));
-      Maplabel.setBounds(0, 0, 800, 800);
+      Maplabel.setBounds(0, 0, GameSetUp.WIDTH, GameSetUp.HEIGHT);
     } catch (IOException e1) {
       parent.FailureinGui("Map image load failure");
       e1.printStackTrace();
@@ -86,7 +89,7 @@ public class GameView extends JPanel implements Control {
     addKeyListener(inputHandler);
     setFocusable(true);
     requestFocus();
-    
+
     field.placeHoles();
     removeAll();
     drawAll();
@@ -101,23 +104,26 @@ public class GameView extends JPanel implements Control {
     parent.ShowResults(field.getRobots());
   }
 
-  public void drawAll() {    
+  public void drawAll() {
     // Robots
     Robot r = new Robot("", null, null, 0);
     for (Drawable d : drawables)
-      if (d.kindOf(r)) d.draw(this);
-    
+      if (d.kindOf(r))
+        d.draw(this);
+
     // Workers
-    Worker w = new Worker(null, 0, null);
+    Worker w = new Worker(null, null);
     for (Drawable d : drawables)
-      if (d.kindOf(w)) d.draw(this);
-    
+      if (d.kindOf(w))
+        d.draw(this);
+
     // Items
     Oil o = new Oil(null);
     Tacky t = new Tacky(null);
     Hole h = new Hole(null);
     for (Drawable d : drawables)
-      if (d.kindOf(o) || d.kindOf(t) || d.kindOf(h)) d.draw(this);
+      if (d.kindOf(o) || d.kindOf(t) || d.kindOf(h))
+        d.draw(this);
   }
 
   public void itemAdded(Item i) {
@@ -127,12 +133,11 @@ public class GameView extends JPanel implements Control {
 
   public void itemRemoved(Item i) {
     for (int j = 0; j < drawables.size(); j++) {
-      if (drawables.get(j).isItsMe(i)) {
+      if (drawables.get(j).isItMe(i)) {
         drawables.remove(j);
         break;
       }
     }
-
   }
 
   public void creatureAdded(Creature c) {
@@ -143,12 +148,11 @@ public class GameView extends JPanel implements Control {
 
   public void creatureRemoved(Creature c) {
     for (int j = 0; j < drawables.size(); j++) {
-      if (drawables.get(j).isItsMe(c)) {
+      if (drawables.get(j).isItMe(c)) {
         drawables.remove(j);
         break;
       }
     }
-
   }
 
   private String getTimeString() {
@@ -156,8 +160,8 @@ public class GameView extends JPanel implements Control {
     return new String(Integer.toString(minutes) + " : "
         + Integer.toString(seconds - minutes * 60));
   }
-  
-  public void addPlayer(String name, Color cl){
-	  field.newRobot(name, cl);
+
+  public void addPlayer(String name, Color cl) {
+    field.newRobot(name, cl);
   }
 }
