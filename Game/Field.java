@@ -23,7 +23,7 @@ public class Field implements Observer {
     //placeHoles();
   }
   
-  public void setcontrol (Control c){
+  public void setControl (Control c){
 	//Initializing control
 	    control = c;
   }
@@ -58,8 +58,9 @@ public class Field implements Observer {
     }
     
     if (--countdown == 0){
-    	newWorker(new Worker(new Angle(0),5,this));
-    	countdown = 20;
+        double rand = Math.random() * 360;
+    	newWorker(new Worker(new Angle(rand),5,this));
+    	countdown = (int)(Math.random()*11)+5;
     }
   }
 
@@ -157,7 +158,7 @@ public class Field implements Observer {
 
   // Removing item from the field
   public void removeItem(Item item) {
-    items.remove(item.position.getAngle());
+    items.values().remove(item);
     //Remove from control
     control.itemRemoved(item);
   }
@@ -167,6 +168,7 @@ public class Field implements Observer {
     for (Robot robot : robots) {
       if (robot.getItemCache() != null) {
         addItem(robot.getItemCache());
+        robot.setItemCache(null);
       }
     }
   }
@@ -182,12 +184,12 @@ public class Field implements Observer {
 
   // Placing holes on the field
   public void placeHoles() {
-	  addItem(new Hole(new Angle(120)));
-	  addItem(new Hole(new Angle(60)));
-	  addItem(new Hole(new Angle(50)));
-	  addItem(new Hole(new Angle(30)));
-	  //newWorker(new Worker(new Angle(30),1,this));
-  }
+          int db = (int) (Math.random() * 6)+1;
+	  for (int i=0; i<db; i++) {
+	    double position = Math.random()*360;
+	    addItem(new Hole(new Angle(position)));
+          }
+      }
 
   // Deciding the winning Robot
   public Robot winner() {

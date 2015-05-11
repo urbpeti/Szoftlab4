@@ -34,14 +34,14 @@ public class Robot extends Creature {
 
   // Accelerating
   public void accelerate() {
-    if (delta < 10)
-      delta += 1;
+    if (delta < 5)
+      delta += 5;
   }
 
   // Decelerating
   public void decelerate() {
-    if (delta > -10)
-      delta -= 1;
+    if (delta > -5)
+      delta -= 5;
   }
 
   // Halves the robot's speed

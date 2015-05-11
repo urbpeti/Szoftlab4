@@ -26,9 +26,9 @@ public class Worker extends Creature {
     while(distance < 0)
       distance += 360;
     if(distance > 180)
-      velocity = -1;
+      velocity = -2;
     else
-      velocity = 1;    
+      velocity = 2;    
   }
   
   private Item getClosestItem() {
@@ -61,7 +61,7 @@ public class Worker extends Creature {
         cleaningItem = null;
         go();
       }
-      else return;
+      return;
     }
     
     Item found = onItem();
@@ -88,7 +88,6 @@ public class Worker extends Creature {
       }
     
     if (item == null) return null;
-    System.out.println("WOrkervalami");
     item.interact(this);
     
     return item;

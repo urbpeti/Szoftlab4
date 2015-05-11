@@ -12,7 +12,7 @@ public class Hole extends Item {
   }
 
   public String toString() {
-    return "Tacky " + position;
+    return "Hole " + position;
   }
 
   @Override
