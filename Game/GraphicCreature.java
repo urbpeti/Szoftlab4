@@ -14,8 +14,8 @@ public class GraphicCreature implements Drawable {
   private Image image;
   private static int colorcount = 0;
   private JLabel robotlabel;
-  private static final String[] imagesources = { "Images\\ingame_green.png",
-      "Images\\ingame_red.png", "Images\\ingame_cyan.png" };
+  private static final String[] imagesources = { "Images/ingame_green.png",
+      "Images/ingame_red.png", "Images/ingame_cyan.png" };
 
   public GraphicCreature(Creature c) {
     creature = c;
@@ -30,7 +30,7 @@ public class GraphicCreature implements Drawable {
       }
     } else {
       try {
-        image = ImageIO.read(new File("Images\\worker.png"));
+        image = ImageIO.read(new File("Images/worker.png"));
         image = image.getScaledInstance(30, 30, 1);
         robotlabel = new JLabel(new ImageIcon(image));
       } catch (IOException e) {
