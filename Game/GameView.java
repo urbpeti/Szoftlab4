@@ -105,7 +105,7 @@ public class GameView extends JPanel implements Control {
 		for (int j=0; j<drawables.size(); j++){
 			if(drawables.get(j).isitme(i)){
 				drawables.remove(j);
-				break;
+				//break;
 			}
 		}
 		

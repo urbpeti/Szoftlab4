@@ -44,10 +44,10 @@ public class GraphicCreature implements Drawable {
 	
 	@Override
 	public void draw(JPanel p) {
-		if (!(creature instanceof Robot) || !(creature.getIsDead())){
+		if (!(creature instanceof Robot) || !(creature.getIsDead())) {
 			p.add(robotlabel);
-		robotlabel.setBounds((int)(380+280*Math.cos(Math.toRadians(creature.getPosition().getAngle()))), (int)(380+280*Math.sin(Math.toRadians(creature.getPosition().getAngle()))), 40, 40);
-		p.setComponentZOrder(robotlabel, 0);
+			robotlabel.setBounds((int)(380+280*Math.cos(Math.toRadians(creature.getPosition().getAngle()))), (int)(380+280*Math.sin(Math.toRadians(creature.getPosition().getAngle()))), 40, 40);
+			p.setComponentZOrder(robotlabel, 0);
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Field implements Observer {
     items = new HashMap<Double, Item>();
     robots = new ArrayList<Robot>();
     workers = new ArrayList<Worker>();
-    countdown = 4;
+    countdown = 20;
 
     // Placing holes randomly on the field
     //placeHoles();
@@ -59,7 +59,7 @@ public class Field implements Observer {
     
     if (--countdown == 0){
     	newWorker(new Worker(new Angle(0),5,this));
-    	countdown = 20;
+    	countdown = 30;
     }
   }
 
@@ -95,7 +95,7 @@ public class Field implements Observer {
   public void stepWorkers() {
     for (Worker worker : workers) {
     	worker.go();
-      worker.jump();
+        worker.jump();
     }
 
     for (Worker worker : workers) {
@@ -157,7 +157,8 @@ public class Field implements Observer {
 
   // Removing item from the field
   public void removeItem(Item item) {
-    items.remove(item.position.getAngle());
+    items.values().remove(item);
+    
     //Remove from control
     control.itemRemoved(item);
   }
