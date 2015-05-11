@@ -64,7 +64,7 @@ public class GameView extends JPanel implements Control {
 
   private void init() {
     try {
-      map = ImageIO.read(new File("Images\\map.png"));
+      map = ImageIO.read(new File("Images/map.png"));
       map = map.getScaledInstance(800, 800, 1);
       Maplabel = new JLabel(new ImageIcon(map));
       Maplabel.setBounds(0, 0, 800, 800);
@@ -76,6 +76,7 @@ public class GameView extends JPanel implements Control {
     timecounter = new JLabel(getTimeString());
     timecounter.setBounds(280, 350, 400, 100);
     timecounter.setFont(new Font("Verdana", Font.PLAIN, 100));
+    timecounter.setForeground(new Color(177, 177, 177));
   }
 
   public void present() {

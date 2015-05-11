@@ -25,11 +25,11 @@ public class GraphicItem extends JPanel implements Drawable {
     item = i;
     String imagesource;
     if (item instanceof Hole)
-      imagesource = "Images\\hole.png";
+      imagesource = "Images/hole.png";
     else if (item instanceof Oil)
-      imagesource = "Images\\oil.png";
+      imagesource = "Images/oil.png";
     else
-      imagesource = "Images\\tacky.png";
+      imagesource = "Images/tacky.png";
 
     try {
       image = ImageIO.read(new File(imagesource));
