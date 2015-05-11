@@ -142,5 +142,4 @@ public class GameView extends JPanel implements Control {
     return new String(Integer.toString(minutes) + " : "
         + Integer.toString(seconds - minutes * 60));
   }
-
 }

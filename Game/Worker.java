@@ -51,6 +51,7 @@ public class Worker extends Creature {
     if (getIsDead()) return;
     
     if (cleaning) {
+    	System.out.println("ASDASDASDASDASDS");
       cleaningTime++;
       
       if (cleaningTime == 2) { // ha  vegzett
@@ -60,6 +61,7 @@ public class Worker extends Creature {
         cleaning = false;
         cleaningItem = null;
         go();
+        return;
       }
       return;
     }
@@ -82,7 +84,7 @@ public class Worker extends Creature {
     
     Item item = null;
     for (Item i: field.getItems())
-      if (inRangeOf(i)) { // ide rangeof
+      if (inRangeOf(i) && i.exists()) { // ide rangeof
         item = i;
         break;
       }

@@ -59,5 +59,4 @@ public class GraphicCreature implements Drawable {
   public static void setColorCount(int i) {
     colorcount = i;
   }
-
 }
