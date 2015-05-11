@@ -31,9 +31,9 @@ public class GameView extends JPanel implements Control {
   private int seconds;
   private Image map;
 
-  public GameView(Main m, Field f) {
+  public GameView(Main m) {
     drawables = new ArrayList<Drawable>();
-    field = f;
+    field = new Field();
     seconds = 0;
     parent = m;
     
@@ -59,6 +59,7 @@ public class GameView extends JPanel implements Control {
       }
     });
     init();
+    field.setControl(this);
   }
 
   private void init() {
@@ -97,7 +98,7 @@ public class GameView extends JPanel implements Control {
   public void endGame() {
     timer.stop();
     setVisible(false);
-    parent.ShowResults();
+    parent.ShowResults(field.getRobots());
   }
 
   public void drawAll() {
@@ -141,5 +142,9 @@ public class GameView extends JPanel implements Control {
     int minutes = seconds / 60;
     return new String(Integer.toString(minutes) + " : "
         + Integer.toString(seconds - minutes * 60));
+  }
+  
+  public void addPlayer(String name, Color cl){
+	  field.newRobot(name, cl);
   }
 }

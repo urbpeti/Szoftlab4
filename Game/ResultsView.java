@@ -32,6 +32,7 @@ public class ResultsView extends JPanel {
       public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
         setVisible(false);
+        parent.nullGame();
         parent.ShowMenu();
       }
     });

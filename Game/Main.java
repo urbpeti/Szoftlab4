@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -12,13 +13,13 @@ public class Main extends JFrame {
   private MenuView menu;
   private ResultsView results;
   private GameView game;
-  public Field field;
 
   public static void main(String[] args) {
     new Main();
   }
 
   public Main() {
+	game = new GameView(this);
     ShowMenu();
 
   }
@@ -27,9 +28,7 @@ public class Main extends JFrame {
     GraphicCreature.setColorCount(0);
     menu = new MenuView(this);
     results = new ResultsView(this);
-    field = new Field();
-    game = new GameView(this, field);
-    field.setControl(game);
+    
     setTitle("MarsONE");
     setResizable(false);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,19 +38,23 @@ public class Main extends JFrame {
     setVisible(true);
     menu.present();
   }
+  
+  public void nullGame(){
+	  game = new GameView(this);
+  }
 
   public void ShowGame() {
     add(game);
     game.present();
   }
 
-  public void ShowResults() {
+  public void ShowResults(ArrayList<Robot> l) {
     add(results);
-    results.present(field.getRobots());
+    results.present(l);
   }
 
   public void AddPlayer(String name, Color cl) {
-    field.newRobot(name, cl);
+    game.addPlayer(name, cl);
   }
 
   public void FailureinGui(String s) {
