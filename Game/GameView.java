@@ -1,5 +1,7 @@
 package Game;
 
+import static Setup.GameSetUp.TICKTIME;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -14,9 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-import Setup.GameSetUp;
-import static Setup.GameSetUp.*;
 
 public class GameView extends JPanel implements Control {
   /**
@@ -68,9 +67,9 @@ public class GameView extends JPanel implements Control {
   private void init() {
     try {
       map = ImageIO.read(new File("Images/map.png"));
-      map = map.getScaledInstance(GameSetUp.WIDTH, GameSetUp.HEIGHT, 1);
+      map = map.getScaledInstance(800, 800, 1);
       Maplabel = new JLabel(new ImageIcon(map));
-      Maplabel.setBounds(0, 0, GameSetUp.WIDTH, GameSetUp.HEIGHT);
+      Maplabel.setBounds(0, 0, 800, 800);
     } catch (IOException e1) {
       parent.FailureinGui("Map image load failure");
       e1.printStackTrace();

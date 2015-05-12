@@ -42,11 +42,11 @@ public class GraphicItem extends JPanel implements Drawable {
   }
 
   public void draw(JPanel p) {
-      p.add(this);
-      double d = Math.toRadians(item.position.getAngle());
+    p.add(this);
+    double d = Math.toRadians(item.position.getAngle());
 
-      this.setBounds((int) (370 + 280 * Math.cos(d)),
-          (int) (370 + 280 * Math.sin(d)), 60, 60);
+    this.setBounds((int) (370 + 280 * Math.cos(d)),
+        (int) (370 + 280 * Math.sin(d)), 60, 60);
   }
 
   public boolean isItMe(Object o) {
@@ -71,7 +71,7 @@ public class GraphicItem extends JPanel implements Drawable {
 
     g2d.drawImage(image, at, null);
   }
-  
+
   @Override
   public boolean kindOf(Object o) {
     return item.getClass().equals(o.getClass());

@@ -1,7 +1,7 @@
 package Game;
 
 import java.awt.Color;
-
+import static Setup.GameSetUp.ROBOTSPEED;
 public class Robot extends Creature {
   private String name;
   private Color color;
@@ -34,14 +34,14 @@ public class Robot extends Creature {
 
   // Accelerating
   public void accelerate() {
-    if (delta < 5)
-      delta += 5;
+    if (delta < ROBOTSPEED)
+      delta += ROBOTSPEED;
   }
 
   // Decelerating
   public void decelerate() {
-    if (delta > -5)
-      delta -= 5;
+    if (delta > -ROBOTSPEED)
+      delta -= ROBOTSPEED;
   }
 
   // Halves the robot's speed

@@ -1,11 +1,13 @@
 package Game;
 
+import static Setup.GameSetUp.TACKYSTEPCOUNT;;
+
 public class Tacky extends Item {
   protected int count;
 
   public Tacky(Angle a) {
     super(a);
-    count = 4;
+    count = TACKYSTEPCOUNT;
   }
 
   // Tacky interaction with Robot
@@ -25,7 +27,6 @@ public class Tacky extends Item {
   }
 
   public boolean exists() {
-	  if (count <=0) System.out.println("Ragacs már nem élek");
     return count > 0;
   }
 

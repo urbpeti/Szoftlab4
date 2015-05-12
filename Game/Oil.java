@@ -1,5 +1,7 @@
 package Game;
 
+import static Setup.GameSetUp.OILEXPIRATIONTIME;
+
 public class Oil extends Item {
   private int expiration;
 
@@ -23,7 +25,7 @@ public class Oil extends Item {
   }
 
   public boolean exists() {
-    return expiration < 3;
+    return expiration < OILEXPIRATIONTIME;
   }
 
   public String toString() {
@@ -36,6 +38,6 @@ public class Oil extends Item {
 
   @Override
   public void interact(Worker worker) {
-	  
+
   }
 }
